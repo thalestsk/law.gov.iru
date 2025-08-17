@@ -1,17 +1,27 @@
-// Sample data - in a real app, this would come from an API
-const laws = [
-    { id: 1, chapter: 'A1', title: 'Administration of Justice Act', category: 'administrative', type: 'Act' },
-    { id: 2, chapter: 'A2', title: 'Arbitration Act', category: 'civil', type: 'Act' },
-    { id: 3, chapter: 'B1', title: 'Banking Act', category: 'commercial', type: 'Act' },
-    { id: 4, chapter: 'C1', title: 'Companies Act', category: 'commercial', type: 'Act' },
-    { id: 5, chapter: 'C2', title: 'Constitution', category: 'constitutional', type: 'Act' },
-    { id: 6, chapter: 'C3', title: 'Criminal Code', category: 'criminal', type: 'Act' },
-    { id: 7, chapter: 'E1', title: 'Environmental Protection Act', category: 'environmental', type: 'Act' },
-    { id: 8, chapter: 'L1', title: 'Labor Relations Act', category: 'labor', type: 'Act' },
-    { id: 9, chapter: 'T1', title: 'Tax Administration Act', category: 'tax', type: 'Act' },
-    { id: 10, chapter: 'T2', title: 'Trade Marks Act', category: 'commercial', type: 'Act' },
-    // Add more sample data as needed
-];
+// Get laws data from the HTML table
+function getLawsFromTable() {
+    const laws = [];
+    const rows = document.querySelectorAll('#lawsTableBody tr');
+    
+    rows.forEach((row, index) => {
+        const cells = row.cells;
+        if (cells.length >= 4) { // Ensure we have all required columns
+            const link = cells[1].querySelector('a');
+            laws.push({
+                id: index + 1,
+                chapter: cells[0].textContent.trim(),
+                title: link ? link.textContent.trim() : cells[1].textContent.trim(),
+                category: 'acts', // Default category
+                type: cells[3].textContent.trim(),
+                href: link ? link.getAttribute('href') : '#'
+            });
+        }
+    });
+    
+    return laws;
+}
+
+let laws = []; // Will be populated in init()
 
 // DOM Elements
 const tableBody = document.getElementById('lawsTableBody');
@@ -25,6 +35,7 @@ const lastPageBtn = document.getElementById('lastPage');
 const pageNumbers = document.getElementById('pageNumbers');
 const pageSizeSelect = document.getElementById('pageSize');
 const paginationInfo = document.getElementById('paginationInfo');
+const tableHeaders = document.querySelectorAll('#lawsTable thead th');
 
 // Pagination state
 let currentPage = 1;
@@ -33,6 +44,18 @@ let filteredLaws = [...laws];
 
 // Initialize the app
 function init() {
+    // Get laws from the HTML table
+    laws = getLawsFromTable();
+    filteredLaws = [...laws];
+    
+    // Add sorting indicators and event listeners to headers
+    tableHeaders.forEach((header, index) => {
+        if (index < 2) { // Only make first two columns sortable (Reference No. and Short Title)
+            header.style.cursor = 'pointer';
+            header.addEventListener('click', () => sortTable(index));
+        }
+    });
+    
     renderTable();
     setupEventListeners();
 }
@@ -93,6 +116,54 @@ function setupEventListeners() {
     });
 }
 
+// Sort direction state
+let sortColumn = 0; // 0 for Reference No., 1 for Short Title
+let sortDirection = 1; // 1 for ascending, -1 for descending
+
+// Sort the table by column
+function sortTable(columnIndex) {
+    // If clicking the same column, reverse the sort direction
+    if (sortColumn === columnIndex) {
+        sortDirection *= -1;
+    } else {
+        sortColumn = columnIndex;
+        sortDirection = 1; // Default to ascending when changing columns
+    }
+    
+    // Update sort indicators
+    updateSortIndicators();
+    
+    // Sort the filteredLaws array
+    filteredLaws.sort((a, b) => {
+        let valueA, valueB;
+        
+        if (sortColumn === 0) { // Reference No.
+            // Extract numbers from the reference (e.g., 'Cap. 77' -> 77)
+            const numA = parseInt(a.chapter.replace(/\D/g, '')) || 0;
+            const numB = parseInt(b.chapter.replace(/\D/g, '')) || 0;
+            return (numA - numB) * sortDirection;
+        } else { // Short Title
+            valueA = a.title.toLowerCase();
+            valueB = b.title.toLowerCase();
+            return valueA.localeCompare(valueB) * sortDirection;
+        }
+    });
+    
+    // Reset to first page after sorting
+    currentPage = 1;
+    renderTable();
+}
+
+// Update sort indicators in table headers
+function updateSortIndicators() {
+    tableHeaders.forEach((header, index) => {
+        header.classList.remove('sorted-asc', 'sorted-desc');
+        if (index === sortColumn) {
+            header.classList.add(sortDirection === 1 ? 'sorted-asc' : 'sorted-desc');
+        }
+    });
+}
+
 // Filter laws based on search and category
 function filterLaws() {
     const searchTerm = searchInput.value.toLowerCase();
@@ -108,8 +179,9 @@ function filterLaws() {
         
         return matchesSearch && matchesCategory;
     });
-
-    renderTable();
+    
+    // Apply current sorting after filtering
+    sortTable(sortColumn);
 }
 
 // Render the laws table
@@ -137,7 +209,7 @@ function renderTable() {
             const row = document.createElement('tr');
             row.innerHTML = `
                 <td>${law.chapter}</td>
-                <td><a href="law.html?id=${law.id}">${law.title}</a></td>
+                <td><a href="${law.href}">${law.title}</a></td>
                 <td>${formatCategory(law.category)}</td>
                 <td>${law.type}</td>
             `;

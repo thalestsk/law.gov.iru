@@ -1,0 +1,48 @@
+An Act to provide for the establishment and functions of the Surveyor-General, to constitute the Surveyor-General as the principal authority for spatial surveying and mapping, and for related matters.
+ENACTED by the Parliament of [COUNTRY] as follows:
+PART I - PRELIMINARY
+1. Short Title and Commencement
+(1) This Act may be cited as the Surveyor-General Act.
+(2) This Act shall come into operation on [PLACEHOLDER DATE].
+2. Interpretation
+In this Act, unless the context otherwise requires—
+"authorised officer" means an officer or employee of the Office of the Surveyor-General, or any other person, authorised in writing by the Surveyor-General to exercise any power or perform any duty under this Act;
+"geodetic infrastructure" means the national network of survey marks, control points, and associated data that define the national spatial reference system;
+"mapping" means the process of creating, compiling, and representing spatial data in graphical or digital form;
+"Office" means the Office of the Surveyor-General established under section 3;
+"spatial data" means any data that directly or indirectly refers to a specific location or geographical area;
+"survey" means the process of determining the precise position of points and the accurate measurement of distances, directions, and elevations on or beneath the Earth's surface, and includes cadastral surveys, topographical surveys, engineering surveys, hydrographic surveys, and geodetic surveys;
+"Surveyor-General" means the person appointed as the Surveyor-General under section 4.
+PART II - THE SURVEYOR-GENERAL
+3. Establishment of the Office of the Surveyor-General
+(1) There is hereby established an office to be known as the Office of the Surveyor-General.
+(2) [Deleted]
+4. Appointment of Surveyor-General
+(1) There shall be appointed, in accordance with the Protocol on the Great Officers of State, a public officer to be known as the Surveyor-General.
+(2) [Deleted]
+(3) The Surveyor-General shall be the chief executive of the Office.
+5. Functions of the Surveyor-General
+The functions of the Surveyor-General shall be—
+(a) to establish, maintain, and manage the national geodetic infrastructure;
+(b) to regulate, supervise, and control all surveys and mapping activities carried out for public purposes or for the purposes of this Act;
+(c) to prescribe standards, specifications, and procedures for all surveys and mapping activities;
+(d) to examine, approve, and archive all survey plans, field notes, and spatial data submitted for official purposes;
+(e) to prepare, publish, and distribute national maps, charts, and other spatial information products;
+(f) to advise the Government on all matters relating to surveying, mapping, and spatial data infrastructure;
+(g) to promote the development and use of spatial data infrastructure across all levels of government;
+(h) to conduct research and development in surveying and mapping technologies;
+(i) to perform such other functions as may be conferred on him by this Act or any other written law.
+6. Powers of the Surveyor-General
+For the purpose of carrying out his functions under this Act, the Surveyor-General shall have power to make regulations for the effective administration of this Act and for the proper conduct of surveying and mapping activities within [COUNTRY].
+PART III - NATIONAL SPATIAL DATA AUTHORITY
+7. Surveyor-General as Principal Authority for Spatial Data
+(1) The Surveyor-General is hereby constituted as the principal authority on all matters relating to spatial surveying and mapping within [COUNTRY].
+(2) All surveys, maps, and spatial data approved, prepared, or issued by the Surveyor-General shall be deemed to be the definitive and authoritative source of truth for all spatial information in [COUNTRY].
+8. Use of Official Surveys and Maps
+(1) Notwithstanding any other written law, any person or entity shall, for the purpose of developing other maps, policies, or for any official purpose requiring spatial information, utilise only surveys, maps, and spatial data that have been approved, prepared, or issued by the Surveyor-General.
+(2) [Deleted]
+(3) In the event of any discrepancy or dispute regarding spatial information, the determination of the Surveyor-General shall be final and binding on any person or entity.
+PART IV - MISCELLANEOUS
+9. Savings and Transitional Provisions
+(1) All surveys, maps, and spatial data lawfully prepared or approved prior to the commencement of this Act shall, to the extent that they are consistent with the provisions of this Act, be deemed to have been prepared or approved under this Act.
+(2) Any proceedings commenced or directives issued under any written law repealed by this Act shall, so far as they are not inconsistent with the provisions of this Act, continue in force and effect as if commenced or issued under this Act.

@@ -1,8 +1,12 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Lusitana:wght@400;700&display=swap');
+
 /* Reset and Base Styles */
 :root {
     --primary-color: #2c3e50;
     --secondary-color: #3498db;
     --accent-color: #e74c3c;
+    --heading-color: #2d3748;
     --text-color: #2d3748;
     --light-gray: #f7fafc;
     --medium-gray: #e2e8f0;
@@ -20,14 +24,18 @@
 
 html {
     scroll-behavior: smooth;
+    font-size: 16px; /* Set base font size for rem calculations */
 }
 
 body {
-    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-    line-height: 1.6;
+    font-family: 'Lusitana', serif;
+    line-height: 1.4;
+    font-size: 1rem;
     color: var(--text-color);
     background-color: var(--light-gray);
     padding-top: 70px;
+    margin: 0;
+    padding: 0;
 }
 
 .container {
@@ -134,6 +142,7 @@ a:hover {
 .search-box input {
     width: 100%;
     padding: 0.75rem 1rem 0.75rem 2.5rem;
+    font-family: 'Lusitana', serif;
     font-size: 1rem;
     border: 1px solid var(--border-color);
     border-radius: 0.375rem;
@@ -156,6 +165,7 @@ a:hover {
 .filters select,
 .filters button {
     padding: 0.5rem 1rem;
+    font-family: 'Lusitana', serif;
     font-size: 0.9rem;
     border: 1px solid var(--border-color);
     border-radius: 0.375rem;
@@ -214,6 +224,59 @@ a:hover {
     text-transform: uppercase;
     font-size: 0.75rem;
     letter-spacing: 0.05em;
+    position: relative;
+    padding-right: 1.5rem;
+    cursor: pointer;
+    user-select: none;
+}
+
+.laws-table th:hover {
+    background-color: #e2e8f0;
+}
+
+.laws-table th::after {
+    content: '';
+    position: absolute;
+    right: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    opacity: 0.5;
+}
+
+.laws-table th.sorted-asc::after {
+    border-bottom: 4px solid var(--secondary-color);
+    border-top: none;
+    opacity: 1;
+}
+
+.laws-table th.sorted-desc::after {
+    border-top: 4px solid var(--secondary-color);
+    border-bottom: none;
+    opacity: 1;
+}
+
+.laws-table th:not(.sorted-asc):not(.sorted-desc)::after {
+    border-top: 4px solid var(--dark-gray);
+    margin-top: -2px;
+}
+
+.laws-table th:not(.sorted-asc):not(.sorted-desc)::before {
+    content: '';
+    position: absolute;
+    right: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-bottom: 4px solid var(--dark-gray);
+    margin-top: 2px;
+    opacity: 0.5;
 }
 
 .laws-table tbody tr:hover {
@@ -236,6 +299,16 @@ a:hover {
     font-style: italic;
 }
 
+/* Act Footer */
+.act-footer {
+    text-align: center;
+    padding: 1.5rem 0 1rem;
+    margin-top: 1.5rem;
+    color: var(--dark-gray);
+    font-size: 0.9rem;
+    border-top: 1px solid #e0e0e0;
+}
+
 /* Pagination */
 .pagination-container {
     display: flex;
@@ -251,6 +324,7 @@ a:hover {
 .pagination-info {
     color: var(--dark-gray);
     font-size: 0.9rem;
+    font-family: 'Lusitana', serif;
 }
 
 .pagination-controls {
@@ -270,6 +344,7 @@ a:hover {
     background-color: white;
     border: 1px solid var(--border-color);
     color: var(--primary-color);
+    font-family: 'Lusitana', serif;
     cursor: pointer;
     transition: var(--transition);
 }
@@ -294,6 +369,7 @@ a:hover {
     border: 1px solid var(--border-color);
     background-color: white;
     border-radius: 0.25rem;
+    font-family: 'Lusitana', serif;
     cursor: pointer;
     transition: var(--transition);
 }
@@ -316,6 +392,7 @@ a:hover {
 
 .page-size select {
     padding: 0.375rem 0.5rem;
+    font-family: 'Lusitana', serif;
     border: 1px solid var(--border-color);
     border-radius: 0.25rem;
     background-color: white;
@@ -438,7 +515,6 @@ a:hover {
         padding: 0.5rem;
     }
 }
-}
 
 .container {
     max-width: 1200px;
@@ -533,6 +609,267 @@ a:hover {
 }
 
 /* Footer */
+/* Act Content Styles */
+.act-container {
+    background: white;
+    border-radius: 0.5rem;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    margin: 2rem 0;
+    padding: 2rem;
+}
+
+.act-header {
+    margin-bottom: 2rem;
+}
+
+.act-header subtitle {
+    display: block;
+    font-size: 1.1rem;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+}
+
+.act-meta {
+    display: flex;
+    gap: 1.5rem;
+    font-size: 0.9rem;
+    color: var(--text-color);
+    margin-top: 1rem;
+    flex-wrap: wrap;
+}
+
+.act-part {
+    margin: 2.5rem 0;
+}
+
+.act-part > h1 {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin: 2rem 0 1.5rem 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--border-color);
+    font-weight: 600;
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+}
+
+/* Section styling with two-column layout */
+.section {
+    margin: 1rem 0 1rem 0;
+    font-size: 1rem;
+}
+
+/* Section heading (h2) - main section number and title */
+.section > h2 {
+    font-size: 1.1rem;
+    color: var(--text-color);
+    font-weight: 600;
+    margin: 0.5rem 0;
+    gap: 0.5rem;
+    align-items: baseline;
+}
+
+/* Interpretation section */
+.interpretation {
+    display: block;
+}
+
+.interpretation > h2 {
+    font-size: 1.1rem;
+    color: var(--text-color);
+    font-weight: 600;
+    margin: 0.5rem 0;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.5rem;
+    align-items: baseline;
+    text-indent: 0;
+}
+
+.interpretation h3 {
+    font-size: 1rem;
+    color: var(--text-color);
+    font-weight: normal;
+    margin: 1rem 0 0.5rem 2rem;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.5rem;
+    align-items: baseline;
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+.interpretation h4 {
+    display: block;
+    margin: 1rem 0 0.5rem;
+    text-indent: 0;
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+.interpretation p {
+    margin: 0.5rem 0 0.5rem 2rem;
+    text-align: left;
+    text-indent: 0;
+    color: #333;
+}
+
+/* Definitions list */
+.definitions {
+    margin: 0.5rem 0 0.5rem 4rem;
+}
+
+.definitions dt {
+    font-weight: 600;
+    color: #000;
+    margin-top: 0.5rem;
+    max-width: 100%;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    box-sizing: border-box;
+}
+
+.definitions dd {
+    margin: 0.25rem 0 0.75rem 1.5rem;
+    color: #000;
+    max-width: 100%;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    box-sizing: border-box;
+}
+
+/* Act parts */
+.act-part h1 {
+    font-size: 12pt;
+    font-weight: bold;
+    text-align: center;
+    margin: 1.5em 0 0.5em;
+    padding: 0.5em 0 1em;
+    position: relative;
+    page-break-before: always;
+    page-break-after: avoid;
+}
+
+/* Act header */
+.act-header h1 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.act-header subtitle {
+    display: block;
+    text-align: justify;
+    font-style: italic;
+    margin-bottom: 1rem;
+    padding: 0 1rem;
+    text-align-last: left;
+}
+
+.act-meta {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto 2rem auto;
+    font-size: 0.9rem;
+    max-width: 600px;
+    width: 100%;
+    padding: 0 1rem;
+    gap: 1rem;
+}
+
+.act-meta .reference-no,
+.act-meta .enactment-date {
+    flex: 1;
+    text-align: center;
+    padding: 0.5rem;
+    background-color: rgba(0, 0, 0, 0.02);
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+}
+
+/* Page layout */
+.act-container {
+    max-width: 8.5in;
+    margin: 0 auto;
+    padding: 1in;
+    background: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+@page {
+    size: A4;
+    margin: 1in;
+}
+
+/* Ensure proper spacing for definitions */
+.definitions {
+    margin: 0.5rem 0 1rem 2rem;
+}
+
+.definitions dt {
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-top: 0.5rem;
+}
+
+.definitions dd {
+    margin: 0.25rem 0 0.5rem 1.5rem;
+}
+
+.definitions {
+    margin: 1rem 0 1rem 2rem;
+}
+
+.definitions dt {
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-top: 0.5rem;
+}
+
+.definitions dd {
+    margin: 0.25rem 0 0.75rem 1.5rem;
+    color: var(--text-color);
+}
+
+.deleted {
+    color: inherit;
+    opacity: 0.7;
+    display: inline;
+}
+
+.act-footer {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+    font-size: 0.9rem;
+    color: var(--dark-gray);
+    text-align: right;
+}
+
+@media (max-width: 768px) {
+    .act-container {
+        padding: 1.5rem;
+    }
+    
+    .act-part > h1 {
+        font-size: 1.3rem;
+    }
+    
+    .section h2 {
+        font-size: 1.15rem;
+    }
+    
+    .act-meta {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
+
 .footer {
     background-color: #2c3e50;
     color: white;
@@ -577,5 +914,181 @@ a:hover {
     
     .hero h1 {
         font-size: 2rem;
+    }
+}
+
+/* Standardize all headings within act content */
+.act-content h1,
+.act-content h2,
+.act-content h3,
+.act-content h4,
+.act-header subtitle {
+    font-size: 1rem !important;
+}
+
+/* Act container */
+.act {
+    max-width: 21cm;
+    margin: 0 auto;
+    padding: 1.5cm;
+    box-sizing: border-box;
+}
+
+/* Act title */
+.act-title {
+    font-size: 16pt;
+    font-weight: bold;
+    text-align: center;
+    margin: 1.5em 0;
+    text-transform: uppercase;
+}
+
+/* Act part headers */
+.act-part h1 {
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+    margin: 1.5em 0 0.8em;
+    padding: 0 0 0.5em;
+    text-transform: uppercase;
+    border-bottom: 1px solid #e0e0e0;
+    page-break-before: always;
+    page-break-after: avoid;
+    display: block;
+    clear: both;
+}
+
+/* Section styles */
+.section:last-of-type {
+    position: relative;
+    padding-bottom: 0.5em;
+}
+
+/* Section headings hierarchy */
+.section h2 {
+    display: block;
+    width: 100%;
+    clear: both;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    margin: 1.2rem 0 0.6rem 0;
+    padding-left: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    box-sizing: border-box;
+    page-break-after: avoid;
+    page-break-inside: avoid;
+}
+
+.section h3 {
+    display: block;
+    max-width: 100%;
+    clear: both;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    box-sizing: border-box;
+    text-align: justify;
+    text-justify: inter-word;
+    margin: 1rem 0 0.5rem 1.8rem;
+    padding-left: 0;
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--text-color);
+    box-sizing: border-box;
+    page-break-after: avoid;
+    page-break-inside: avoid;
+}
+
+.section h4 {
+    display: block;
+    max-width: 100%;
+    clear: both;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    box-sizing: border-box;
+    text-align: justify;
+    text-justify: inter-word;
+    margin: 0.6rem 0 0.3rem 3.6rem;
+    padding-left: 0;
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--text-color);
+    box-sizing: border-box;
+    page-break-after: avoid;
+    page-break-inside: avoid;
+}
+
+/* Definition lists */
+.definition-list {
+    margin: 0.5em 0 0.5em 3em;
+    padding: 0;
+}
+
+.definition-list dt {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-top: 0.5em;
+}
+
+.definition-list dd {
+    font-size: 1rem;
+    margin: 0.2em 0 0.5em 2em;
+    text-indent: 0;
+}
+
+/* Lists */
+ol.lower-alpha {
+    list-style-type: lower-alpha;
+    margin: 0.5em 0 0.5em 5em;
+    padding: 0;
+}
+
+ol.lower-roman {
+    list-style-type: lower-roman;
+    margin: 0.5em 0 0.5em 7em;
+    padding: 0;
+}
+
+ol.lower-alpha li,
+ol.lower-roman li {
+    margin: 0.3em 0;
+    padding: 0;
+}
+
+/* Italics for Act titles */
+i {
+    font-style: italic;
+}
+
+/* Act footer */
+.act-footer {
+    margin-top: 2em;
+    padding: 1em 0;
+    text-align: right;
+    color: #666;
+}
+
+/* Print styles */
+@media print {
+    @page {
+        size: A4;
+        margin: 1.5cm;
+    }
+    
+    body {
+        font-size: 10pt;
+    }
+    
+    .act {
+        padding: 0;
+    }
+    
+    .act-title {
+        font-size: 14pt;
+    }
+    
+    .act-part h1 {
+        font-size: 11pt;
     }
 }

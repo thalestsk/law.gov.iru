@@ -1,0 +1,32 @@
+{
+  "acts": [
+    {
+      "referenceNo": "A1",
+      "shortTitle": "Example Act 2023",
+      "category": "acts",
+      "type": "Primary Legislation",
+      "enactmentDate": "2023-01-15",
+      "commencementDate": "2023-04-01",
+      "status": "In Force",
+      "description": "An example act for demonstration purposes.",
+      "chapters": [
+        {
+          "number": 1,
+          "title": "Preliminary",
+          "sections": [
+            {
+              "number": 1,
+              "title": "Short Title",
+              "content": "This Act may be cited as the Example Act 2023."
+            },
+            {
+              "number": 2,
+              "title": "Interpretation",
+              "content": "In this Act, unless the context otherwise requires..."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
