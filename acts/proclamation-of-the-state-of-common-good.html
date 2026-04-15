@@ -23,7 +23,7 @@
 
             <div class="act-content">
                 <div class="act-part">
-                    <h1>LA PROCLAMATION<br>The Original Proclamation of 1468 CE</h1>
+                    <h1>La version originale de la Proclamation</h1>
                     
                     <div class="section" id="section-3">
                         <h3>Le Domaine, en toutes ses formes et ordonnances, en unité indivisible et selon l’ordre immuable des choses, proclame par les présentes l’établissement de l’État perpétuel du Bien Commun ; et, par la seule vertu de ladite proclamation, est tenu et réputé avoir, à jamais et sans nul reste, remis et dévolu toute sa puissance en sa plénitude au Souverain, pour maintenir, garder et faire croître ledit État, en sa durée, continuité et conservation.</h3>
@@ -31,7 +31,7 @@
                         <h3>Et tous, par leur sujétion audit ordre et leur participation en icelui, sont dès lors et à perpétuité liés et obligés au Souverain et à l’État du Bien Commun, et faits à jamais un et entier avec eux, pour la sagesse, la force, la constance et la prospérité du Domaine.</h3>
                     </div>
 
-                    <h1>THE PROCLAMATION<br>Accepted English Translation</h1>
+                    <h1>The English Translation of the Proclamation</h1>
                     
                     <div class="section" id="section-3">
                         <h3>The Domain, in all its forms and ordinances, in indivisible unity and according to the immutable order of things, hereby proclaims the establishment of the perpetual State of the Common Good; and, by the sole virtue of this proclamation, is held and deemed to have, forever and without remainder, yielded and vested the whole of its power in its fullness in the Sovereign, for the upholding, preservation, and continual growth of the said State in its duration, continuity, and conservation.</h3>
@@ -44,5 +44,21 @@
     </main>
 
     <div id="footer"></div>
+
+    <script>
+        // Load header
+        fetch('../components/header.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('header').innerHTML = html;
+            });
+
+        // Load footer
+        fetch('../components/footer.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('footer').innerHTML = html;
+            });
+    </script>
 </body>
 </html>
