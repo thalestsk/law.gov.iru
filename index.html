@@ -10,6 +10,7 @@
 <body>
     <!-- Header will be loaded here -->
     <div id="header"></div>
+    <div class="navbar-placeholder"></div>
 
     <main class="container">
         <header class="page-header">
@@ -22,14 +23,32 @@
                     <input type="text" id="searchInput" placeholder="Search laws by title, chapter, or category...">
                 </div>
                 <div class="filters">
-                    <select id="categoryFilter">
-                        <option value="">All Categories</option>
-                        <option value="instruments">Instruments</option>
-                        <option value="charters">Charters</option>
-                        <option value="acts">Acts</option>
-                        <option value="codes">Codes</option>
-                        <option value="regulations">Regulations</option>
-                    </select>
+                    <div class="category-checkboxes">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="selectAll" checked>
+                            <label for="selectAll">Select All</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="act-of-estates" value="act-of-estates" checked>
+                            <label for="act-of-estates">Act of Estates</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="proclamation" value="proclamation" checked>
+                            <label for="proclamation">Proclamation</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="orders-of-state" value="orders-of-state" checked>
+                            <label for="orders-of-state">Orders of State</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="court-rulings" value="court-rulings" checked>
+                            <label for="court-rulings">Court Rulings</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="regulations" value="regulations" checked>
+                            <label for="regulations">Regulations</label>
+                        </div>
+                    </div>
                     <button id="resetFilters">Reset Filters</button>
                 </div>
             </div>
@@ -50,51 +69,63 @@
                     <tbody id="lawsTableBody">
                         <tr>
                             <td>PROC</td>
-                            <td><a href="acts/proclamation-of-the-state-of-common-good.html">Proclamation of the State of Common Good</a></td>
+                            <td><a href="proclamation/proclamation-of-the-state-of-common-good.html">Proclamation of the State of Common Good</a></td>
                             <td>Proclamation</td>
                             <td>Founding Proclamation</td>
                         </tr> 
                         <tr>
                             <td>Cap. 1</td>
-                            <td><a href="acts/template.html">Interpretation Act</a></td>
-                            <td>Acts</td>
+                            <td><a href="template.html">Interpretation Act</a></td>
+                            <td>Act of Estates</td>
                             <td>Primary Legislation</td>
                         </tr>
                         <tr>
                             <td>Cap. 2</td>
-                            <td><a href="acts/template.html">Armed Force and National Defence Act</a></td>
-                            <td>Acts</td>
+                            <td><a href="template.html">Armed Force and National Defence Act</a></td>
+                            <td>Act of Estates</td>
                             <td>Primary Legislation</td>
                         </tr>
                         <tr>
                             <td>Cap. 3</td>
-                            <td><a href="acts/template.html">National Security Act</a></td>
-                            <td>Acts</td>
+                            <td><a href="template.html">National Security Act</a></td>
+                            <td>Act of Estates</td>
                             <td>Primary Legislation</td>
                         </tr>
                         <tr>
                             <td>Cap. 4</td>
-                            <td><a href="acts/template.html">Sovereign Affairs Act</a></td>
-                            <td>Acts</td>
+                            <td><a href="template.html">Sovereign Affairs Act</a></td>
+                            <td>Act of Estates</td>
                             <td>Primary Legislation</td>
                         </tr>
                         <tr>
                             <td>Cap. 5</td>
-                            <td><a href="acts/template.html">Enlightenment Act</a></td>
-                            <td>Acts</td>
+                            <td><a href="template.html">Enlightenment Act</a></td>
+                            <td>Act of Estates</td>
                             <td>Primary Legislation</td>
                         </tr>
                         <tr>
                             <td>Cap. 77</td>
-                            <td><a href="acts/surveyor-general-act.html">Surveyor-General Act</a></td>
-                            <td>Acts</td>
+                            <td><a href="act-of-estates/surveyor-general-act.html">Surveyor-General Act</a></td>
+                            <td>Act of Estates</td>
                             <td>Primary Legislation</td>
                         </tr>
                         <tr>
                             <td>Cap. 99</td>
-                            <td><a href="acts/template.html">Penal Code</a></td>
-                            <td>Codes</td>
+                            <td><a href="template.html">Penal Code</a></td>
+                            <td>Regulations</td>
                             <td>Primary Legislation</td>
+                        </tr>
+                        <tr>
+                            <td>SCR</td>
+                            <td><a href="court-rulings/scr-foundational-law.html">Supreme Court Rulings - Foundational Law</a></td>
+                            <td>Court Rulings</td>
+                            <td>Judicial Precedent</td>
+                        </tr>
+                        <tr>
+                            <td>SCR</td>
+                            <td><a href="court-rulings/scr-adjudicative-presumptions.html">Supreme Court Rulings - Adjudicative Presumptions</a></td>
+                            <td>Court Rulings</td>
+                            <td>Judicial Precedent</td>
                         </tr>
                         <!-- More acts will be added here -->
                     </tbody>
@@ -133,6 +164,8 @@
             .then(response => response.text())
             .then(html => {
                 document.getElementById('header').innerHTML = html;
+                // Initialize scroll behavior after header is loaded
+                initializeScrollBehavior();
             });
 
         // Load footer
@@ -141,6 +174,25 @@
             .then(html => {
                 document.getElementById('footer').innerHTML = html;
             });
+
+        // Initialize scroll behavior
+        function initializeScrollBehavior() {
+            const navbar = document.querySelector('.navbar');
+            let lastScrollTop = 0;
+            let scrollThreshold = 100; // Start floating after 100px of scroll
+
+            window.addEventListener('scroll', () => {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                if (scrollTop > scrollThreshold) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+                
+                lastScrollTop = scrollTop;
+            });
+        }
     </script>
 
     <script src="js/app.js" type="module"></script>

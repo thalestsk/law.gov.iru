@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supreme Court Rulings - Law.gov.iru</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header will be loaded here -->
+    <div id="header"></div>
+    <div class="navbar-placeholder"></div>
+
+    <main class="container">
+        <div class="act-container">
+            <header class="act-header">
+                <h1>
+                    Supreme Court Rulings -
+                    <br>
+                    Foundational Law
+                </h1>
+                <subtitle>The list of standing interpretations of law upheld by the Supreme Court of Judicature on matters of foundational law relating to the Proclamation and the interpretive Edicts.</subtitle>
+            </header>
+
+            <div class="act-content">
+                <!-- Supreme Court Rulings content will be dynamically loaded here -->
+                <div class="act-part">
+                    
+                    <div class="section">
+                        <h2>Fluidity of the Common Good</h2>
+                        <h3><i>Lindis v. The State, 1868</i> - The Court declines to affix a settled definition to the Common Good, for it is not a term ordained to stand in fixed meaning, but one whose force lies in its capacity to answer to circumstance. To define it in the abstract would be to confine that which must remain responsive, and to substitute rigidity where judgment is required. As a thing not yet called into final form admits of more than one state, so too the Common Good may bear differing yet lawful expressions until the moment of necessity compels its application. It is therefore the duty of the Court not to pronounce upon it beyond what the present cause requires, but only to determine whether the measure in question may be sustained within a coherent understanding of the State’s ordering.</h3>
+
+                        <h3><i>Re The Triesenberg Daily, 2025</i> - The Court does not undertake to define the Common Good, for it is not a term to be confined by fixed meaning, but one realised in its application. The Court is not concerned with the content of the Common Good in the abstract.</h3>
+
+                        <h2>The Common Good as a Shield</h2>
+                        <h3><i>Re The Triesenberg Daily, 2025</i> - The Court finds that where a public authority permits ambiguity to persist, and declines to give timely account where it is able, it cannot thereafter rely upon the Common Good to shield itself from the consequences of that ambiguity. It is sufficient to state that its invocation does not excuse conduct which, by ordinary prudence, ought to have been clarified or resolved. The Court rejects its improper use as a substitute for clarity, candour, and the reasonable expectations of those subject to its exercise.</h3>
+
+                        <h2>Preservation of the Unity of Law</h2>
+                        <h3><i><a href="../common-law/SC-1961-007_Re Fouche.html">Re Fouché, 1961</a></i> - The Court proceeds upon the principle that the law within the Domain is one and indivisible, notwithstanding its application across differing places and circumstances. Where divergence arises between courts, it is the duty of the judicial system to restore coherence, so that no conflicting constructions are permitted to stand in parallel. The Court shall therefore act, where necessary, to reconcile such differences, not for the sake of uniformity alone, but to preserve the unity of authority from which all law proceeds.</h3>
+
+                        <h2>Necessity of Escalation</h2>
+                        <h3><i><a href="../common-law/SC-1961-007_Re Fouche.html">Re Fouché, 1961</a></i> - The Court recognises that not every cause warrants advancement beyond the forum in which it is first determined, and that the progression of matters through the courts must be governed by necessity rather than by right. Accordingly, a cause shall be admitted to a higher court only where its determination bears upon the coherence of law, the reconciliation of conflicting judgments, or the proper ordering of authority within the State. It is not the purpose of escalation to secure repeated adjudication, but to ensure that the law remains consistent and intelligible across the Domain.</h3>
+
+                        <h2>Role of the Supreme Court of Judicature</h2>
+                        <h3><i><a href="../common-law/SC-1961-007_Re Fouche.html">Re Fouché, 1961</a></i> - The Court affirms that its jurisdiction is confined to matters that engage the Proclamation, the Edicts, or the unity of law derived therefrom, and shall not extend to the general correction of error in individual causes. It shall not entertain any matter that does not, in substance, raise a question of foundational authority or of such divergence as affects the coherence of the State's law. In exercising its powers, the Court shall act with restraint, intervening only where necessary to preserve the integrity of the legal order, and not as a court of ordinary appeal.</h3>
+                    </div>
+
+                </div>
+            </div>
+
+            <footer class="act-footer">
+                <p>Last updated: 2024</p>
+            </footer>
+        </div>
+    </main>
+
+    <!-- Footer will be loaded here -->
+    <div id="footer"></div>
+
+    <script>
+        // Load header
+        fetch('../components/header.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('header').innerHTML = html;
+                // Initialize scroll behavior after header is loaded
+                initializeScrollBehavior();
+            });
+
+        // Load footer
+        fetch('../components/footer.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('footer').innerHTML = html;
+            });
+
+        // Initialize scroll behavior
+        function initializeScrollBehavior() {
+            const navbar = document.querySelector('.navbar');
+            let lastScrollTop = 0;
+            let scrollThreshold = 100; // Start floating after 100px of scroll
+
+            window.addEventListener('scroll', () => {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                if (scrollTop > scrollThreshold) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+                
+                lastScrollTop = scrollTop;
+            });
+        }
+    </script>
+</body>
+</html>

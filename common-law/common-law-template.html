@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ACT_TITLE - Law.gov.iru</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header will be loaded here -->
+    <div id="header"></div>
+    <div class="navbar-placeholder"></div>
+
+    <main class="container">
+        <div class="act-container">
+            <header class="act-header">
+                <h1>CASE_TITLE, YEAR</h1>
+                <div class="act-meta">
+                    <span class="reference-no">Reference No.: REFERENCE_NO</span>
+                    <span class="enactment-date">Judgement Date: JUDGEMENT_DATE</span>
+                </div>
+            </header>
+
+            <div class="act-content">
+                <!-- Act content will be dynamically loaded here -->
+                <div class="act-part">
+                    <h1>PART I<br>PRELIMINARY</h1>
+                    
+                    <div class="section" id="section-1">
+                        <h2>Background</h2>
+                        <h3>Insert background story here.</h3>
+                    </div>
+                </div>
+                
+                <div class="act-part">
+                    <h1>PART II<br>ISSUES AND JUDGEMENTS</h1>
+                    
+                    <div class="section" id="section-2">
+                        <h2>1. Whether Supreme Court should admit to matter</h2>
+                        <h4>The Court declines to admit to matter. The absence of an ordinary appeal is not cured by the existence of conflicting decisions below. Admission is governed by necessity in law, not by procedural circumstance or dissatisfaction.</h4>
+                        <h3>2. Whether conflicting Circuit Court decisions constituted a sufficient basis for intervention</h3>
+                        <h4>The Court holds that divergence alone does not compel intervention. Differences may arise without impairing to unity of law. Intervention is warranted only where such divergence threatens to coherence of the legal order.</h4>
+                        <h3>3. Whether divergence was due to error or lawful differences</h3>
+                        <h4>The Court finds that the divergence arose from the lawful differences in the application of distinct Cantonal regimes. Each Court acted within its proper jurisdiction and reasoning. No error is established that would justify correction.</h4>
+                        <h3>4. Whether resolution lies with the courts or the Estates-General</h3>
+                        <h4>The Court holds that the difficulty arises from the interaction of lawful but differing regimes. Such matters fall properly within the competence of the Estates-General. Legislative harmonisation, not judicial intervention, is required.</h4>
+                        <h3>5. Whether repeated petitions and public concern justify escalation</h3>
+                        <h4>The Court holds that repetition of petitions does not alter their substance. Public concern, however genuine, cannot confer jurisdiction. Escalation must be grounded in law, not in persistence or pressure.</h4>
+                        <h3>6. Whether Supreme Court's role extends to resolving systemic difficulties</h3>
+                        <h4>The Court affirms that its function is confined to preserving coherence and unity of law. It does not extend to resolving all systemic or administrative complexities. Such matters lie beyond its proper constitutional role.</h4>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="act-footer">
+                <p>Delivered: JUDGEMENT_DATE</p>
+            </footer>
+        </div>
+    </main>
+
+    <!-- Footer will be loaded here -->
+    <div id="footer"></div>
+
+    <script>
+        // Load header
+        fetch('../components/header.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('header').innerHTML = html;
+                // Initialize scroll behavior after header is loaded
+                initializeScrollBehavior();
+            });
+
+        // Load footer
+        fetch('../components/footer.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('footer').innerHTML = html;
+            });
+
+        // Initialize scroll behavior
+        function initializeScrollBehavior() {
+            const navbar = document.querySelector('.navbar');
+            let lastScrollTop = 0;
+            let scrollThreshold = 100; // Start floating after 100px of scroll
+
+            window.addEventListener('scroll', () => {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                if (scrollTop > scrollThreshold) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+                
+                lastScrollTop = scrollTop;
+            });
+        }
+    </script>
+</body>
+</html>

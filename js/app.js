@@ -11,7 +11,7 @@ function getLawsFromTable() {
                 id: index + 1,
                 chapter: cells[0].textContent.trim(),
                 title: link ? link.textContent.trim() : cells[1].textContent.trim(),
-                category: 'acts', // Default category
+                category: cells[2].textContent.trim(),
                 type: cells[3].textContent.trim(),
                 href: link ? link.getAttribute('href') : '#'
             });
@@ -26,7 +26,8 @@ let laws = []; // Will be populated in init()
 // DOM Elements
 const tableBody = document.getElementById('lawsTableBody');
 const searchInput = document.getElementById('searchInput');
-const categoryFilter = document.getElementById('categoryFilter');
+const categoryCheckboxes = document.querySelectorAll('.category-checkboxes input[type="checkbox"]:not(#selectAll)');
+const selectAllCheckbox = document.getElementById('selectAll');
 const resetFiltersBtn = document.getElementById('resetFilters');
 const firstPageBtn = document.getElementById('firstPage');
 const prevPageBtn = document.getElementById('prevPage');
@@ -68,8 +69,20 @@ function setupEventListeners() {
         filterLaws();
     });
 
-    // Category filter
-    categoryFilter.addEventListener('change', () => {
+    // Category checkboxes
+    categoryCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', () => {
+            updateSelectAllCheckbox();
+            currentPage = 1;
+            filterLaws();
+        });
+    });
+
+    // Select all checkbox
+    selectAllCheckbox.addEventListener('change', () => {
+        categoryCheckboxes.forEach(checkbox => {
+            checkbox.checked = selectAllCheckbox.checked;
+        });
         currentPage = 1;
         filterLaws();
     });
@@ -77,7 +90,10 @@ function setupEventListeners() {
     // Reset filters
     resetFiltersBtn.addEventListener('click', () => {
         searchInput.value = '';
-        categoryFilter.value = '';
+        selectAllCheckbox.checked = true;
+        categoryCheckboxes.forEach(checkbox => {
+            checkbox.checked = true;
+        });
         currentPage = 1;
         filterLaws();
     });
@@ -164,10 +180,27 @@ function updateSortIndicators() {
     });
 }
 
-// Filter laws based on search and category
+// Update select all checkbox state
+function updateSelectAllCheckbox() {
+    const allChecked = Array.from(categoryCheckboxes).every(checkbox => checkbox.checked);
+    selectAllCheckbox.checked = allChecked;
+}
+
+// Get selected categories
+function getSelectedCategories() {
+    const selectedCategories = [];
+    categoryCheckboxes.forEach(checkbox => {
+        if (checkbox.checked) {
+            selectedCategories.push(checkbox.value);
+        }
+    });
+    return selectedCategories;
+}
+
+// Filter laws based on search and categories
 function filterLaws() {
     const searchTerm = searchInput.value.toLowerCase();
-    const category = categoryFilter.value;
+    const selectedCategories = getSelectedCategories();
 
     filteredLaws = laws.filter(law => {
         const matchesSearch = !searchTerm || 
@@ -175,7 +208,14 @@ function filterLaws() {
             law.chapter.toLowerCase().includes(searchTerm) ||
             law.category.toLowerCase().includes(searchTerm);
         
-        const matchesCategory = !category || law.category === category;
+        const matchesCategory = selectedCategories.length === 0 || selectedCategories.some(category => {
+            if (category === 'act-of-estates') return law.category === 'Act of Estates';
+            if (category === 'proclamation') return law.category === 'Proclamation' || law.category === 'Edict';
+            if (category === 'orders-of-state') return law.category === 'Orders of State';
+            if (category === 'court-rulings') return law.category === 'Court Rulings';
+            if (category === 'regulations') return law.category === 'Regulations';
+            return false;
+        });
         
         return matchesSearch && matchesCategory;
     });

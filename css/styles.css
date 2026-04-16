@@ -55,15 +55,40 @@ a:hover {
     text-decoration: underline;
 }
 
+a:visited {
+    color: var(--secondary-color);
+}
+
 /* Navigation */
 .navbar {
     background-color: #fff;
-    box-shadow: var(--shadow);
-    position: fixed;
+    box-shadow: none;
+    position: relative;
     width: 100%;
     top: 0;
     z-index: 1000;
     padding: 0.75rem 0;
+    transition: all 0.3s ease;
+}
+
+.navbar.scrolled {
+    position: fixed;
+    box-shadow: var(--shadow);
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+/* Navbar placeholder to prevent content jump */
+.navbar-placeholder {
+    display: none;
+    height: 0;
+    transition: height 0.3s ease;
+}
+
+.navbar.scrolled + .navbar-placeholder {
+    display: block;
+    height: 70px;
 }
 
 .navbar .container {
@@ -128,7 +153,6 @@ a:hover {
 
 .search-box {
     position: relative;
-    max-width: 600px;
 }
 
 .search-box i {
@@ -137,6 +161,10 @@ a:hover {
     top: 50%;
     transform: translateY(-50%);
     color: var(--dark-gray);
+}
+
+.search-box {
+    position: relative;
 }
 
 .search-box input {
@@ -162,33 +190,97 @@ a:hover {
     flex-wrap: wrap;
 }
 
-.filters select,
+.category-checkboxes {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+    background-color: white;
+    border: 1px solid var(--border-color);
+    border-radius: 0.375rem;
+    padding: 0.5rem 1rem;
+}
+
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+}
+
+.checkbox-item input[type="checkbox"] {
+    width: 1rem;
+    height: 1rem;
+    cursor: pointer;
+    accent-color: var(--secondary-color);
+}
+
+.checkbox-item label {
+    font-family: 'Lusitana', serif;
+    font-size: 0.9rem;
+    color: var(--dark-gray);
+    cursor: pointer;
+    user-select: none;
+    margin: 0;
+}
+
+.checkbox-item input[type="checkbox"]:checked + label {
+    color: var(--secondary-color);
+    font-weight: 500;
+}
+
+.checkbox-item#selectAll {
+    border-right: 1px solid var(--border-color);
+    padding-right: 1rem;
+    margin-right: 0.5rem;
+}
+
 .filters button {
     padding: 0.5rem 1rem;
     font-family: 'Lusitana', serif;
     font-size: 0.9rem;
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--secondary-color);
     border-radius: 0.375rem;
     background-color: white;
+    color: var(--secondary-color);
     cursor: pointer;
     transition: var(--transition);
+    font-weight: 500;
 }
 
-.filters select:focus,
 .filters button:focus {
     outline: none;
-    border-color: var(--secondary-color);
     box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
 }
 
-.filters button {
-    background-color: var(--light-gray);
-    color: var(--dark-gray);
-    border: 1px solid var(--medium-gray);
+.filters button:hover {
+    background-color: var(--secondary-color);
+    color: white;
 }
 
-.filters button:hover {
-    background-color: var(--medium-gray);
+/* Mobile responsive styles for checkboxes */
+@media (max-width: 768px) {
+    .category-checkboxes {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+        padding: 1rem;
+    }
+    
+    .checkbox-item#selectAll {
+        border-right: none;
+        padding-right: 0;
+        margin-right: 0;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 0.75rem;
+        margin-bottom: 0.5rem;
+        width: 100%;
+    }
+    
+    .filters {
+        flex-direction: column;
+        align-items: stretch;
+    }
 }
 
 /* Laws Table */
@@ -522,45 +614,6 @@ a:hover {
     padding: 0 20px;
 }
 
-/* Navigation */
-.navbar {
-    background-color: #fff;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
-}
-
-.navbar .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-}
-
-.logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #2c3e50;
-    text-decoration: none;
-}
-
-.nav-links {
-    display: flex;
-    list-style: none;
-}
-
-.nav-links li a {
-    color: #2c3e50;
-    text-decoration: none;
-    padding: 0.5rem 1rem;
-    transition: color 0.3s ease;
-}
-
-.nav-links li a:hover {
-    color: #3498db;
-}
 
 /* Hero Section */
 .hero {
@@ -791,6 +844,7 @@ a:hover {
     border-radius: 4px;
     border: 1px solid var(--border-color);
 }
+
 
 /* Page layout */
 .act-container {

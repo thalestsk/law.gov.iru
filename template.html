@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ACT_TITLE - Law.gov.iru</title>
-    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <!-- Header will be loaded here -->
     <div id="header"></div>
+    <div class="navbar-placeholder"></div>
 
     <main class="container">
         <div class="act-container">
@@ -77,18 +78,39 @@
 
     <script>
         // Load header
-        fetch('../components/header.html')
+        fetch('components/header.html')
             .then(response => response.text())
             .then(html => {
                 document.getElementById('header').innerHTML = html;
+                // Initialize scroll behavior after header is loaded
+                initializeScrollBehavior();
             });
 
         // Load footer
-        fetch('../components/footer.html')
+        fetch('components/footer.html')
             .then(response => response.text())
             .then(html => {
                 document.getElementById('footer').innerHTML = html;
             });
+
+        // Initialize scroll behavior
+        function initializeScrollBehavior() {
+            const navbar = document.querySelector('.navbar');
+            let lastScrollTop = 0;
+            let scrollThreshold = 100; // Start floating after 100px of scroll
+
+            window.addEventListener('scroll', () => {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                if (scrollTop > scrollThreshold) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+                
+                lastScrollTop = scrollTop;
+            });
+        }
     </script>
 </body>
 </html>

@@ -9,6 +9,7 @@
 </head>
 <body>
     <div id="header"></div>
+    <div class="navbar-placeholder"></div>
 
     <main class="container">
         <div class="act-container">
@@ -51,6 +52,8 @@
             .then(response => response.text())
             .then(html => {
                 document.getElementById('header').innerHTML = html;
+                // Initialize scroll behavior after header is loaded
+                initializeScrollBehavior();
             });
 
         // Load footer
@@ -59,6 +62,25 @@
             .then(html => {
                 document.getElementById('footer').innerHTML = html;
             });
+
+        // Initialize scroll behavior
+        function initializeScrollBehavior() {
+            const navbar = document.querySelector('.navbar');
+            let lastScrollTop = 0;
+            let scrollThreshold = 100; // Start floating after 100px of scroll
+
+            window.addEventListener('scroll', () => {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                if (scrollTop > scrollThreshold) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+                
+                lastScrollTop = scrollTop;
+            });
+        }
     </script>
 </body>
 </html>

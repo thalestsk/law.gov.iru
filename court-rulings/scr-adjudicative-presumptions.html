@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supreme Court Rulings - Law.gov.iru</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header will be loaded here -->
+    <div id="header"></div>
+    <div class="navbar-placeholder"></div>
+
+    <main class="container">
+        <div class="act-container">
+            <header class="act-header">
+                <h1>Supreme Court Rulings - Foundational Law</h1>
+                <subtitle>The list of standing interpretations of law upheld by the Supreme Court of Judicature</subtitle>
+            </header>
+
+            <div class="act-content">
+                <!-- Supreme Court Rulings content will be dynamically loaded here -->
+                <div class="act-part">
+                    
+                    <div class="section">
+                        <h2>The Fluidity of the Common Good</h2>
+                        <h3><i>Lindis v. The State, 1868</i> - The Court declines to affix a settled definition to the Common Good, for it is not a term ordained to stand in fixed meaning, but one whose force lies in its capacity to answer to circumstance. To define it in the abstract would be to confine that which must remain responsive, and to substitute rigidity where judgment is required. As a thing not yet called into final form admits of more than one state, so too the Common Good may bear differing yet lawful expressions until the moment of necessity compels its application. It is therefore the duty of the Court not to pronounce upon it beyond what the present cause requires, but only to determine whether the measure in question may be sustained within a coherent understanding of the State’s ordering.</h3>
+                    </div>
+                    
+                    <div class="section" id="section-2">
+                        <h2>2. Separation of Powers Doctrine</h2>
+                        <h3>(1) The Court has established that the separation of powers requires:</h3>
+                        <h4>(a) Legislative authority to create laws within constitutional bounds;</h4>
+                        <h4>(b) Executive authority to implement and enforce laws;</h4>
+                        <h4>(c) Judicial authority to interpret laws and ensure constitutionality.</h4>
+                    </div>
+                </div>
+                
+                <div class="act-part">
+                    <h1>PART II<br>CIVIL LAW PRECEDENTS</h1>
+                    
+                    <div class="section" id="section-3">
+                        <h2>3. Contract Law Interpretation</h2>
+                        <h3>(1) The Supreme Court has ruled that contract interpretation requires:</h3>
+                        <h4>(a) Giving effect to the parties' intentions where reasonably ascertainable;</h4>
+                        <h4>(b) Applying the contra proferentem rule against ambiguity;</h4>
+                        <h4>(c) Recognizing the doctrine of frustration in exceptional circumstances;</h4>
+                        <h4>(d) Enforcing good faith in commercial transactions.</h4>
+                    </div>
+                    
+                    <div class="section" id="section-4">
+                        <h2>4. Property Rights</h2>
+                        <h3>(1) Property rights are interpreted to include:</h3>
+                        <h4>(a) The right to exclusive possession and use;</h4>
+                        <h4>(b) The right to transfer ownership through lawful means;</h4>
+                        <h4>(c) The right to protection against unlawful seizure;</h4>
+                        <h4>(d) The right to just compensation for public acquisition.</h4>
+                    </div>
+                </div>
+
+                <div class="act-part">
+                    <h1>PART III<br>CRIMINAL LAW PRINCIPLES</h1>
+                    
+                    <div class="section" id="section-5">
+                        <h2>5. Due Process in Criminal Proceedings</h2>
+                        <h3>(1) The Court has established that criminal due process requires:</h3>
+                        <h4>(a) The presumption of innocence until proven guilty;</h4>
+                        <h4>(b) The right to legal representation;</h4>
+                        <h4>(c) The right to a fair and public hearing;</h4>
+                        <h4>(d) The right against self-incrimination;</h4>
+                        <h4>(e) The right to appeal convictions.</h4>
+                    </div>
+                    
+                    <div class="section" id="section-6">
+                        <h2>6. Sentencing Principles</h2>
+                        <h3>(1) The Supreme Court has ruled that sentencing must consider:</h3>
+                        <h4>(a) The gravity of the offense;</h4>
+                        <h4>(b) The culpability of the offender;</h4>
+                        <h4>(c) The need for deterrence;</h4>
+                        <h4>(d) The prospects of rehabilitation;</h4>
+                        <h4>(e) The principle of proportionality.</h4>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="act-footer">
+                <p>Last updated: 2024</p>
+            </footer>
+        </div>
+    </main>
+
+    <!-- Footer will be loaded here -->
+    <div id="footer"></div>
+
+    <script>
+        // Load header
+        fetch('../components/header.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('header').innerHTML = html;
+                // Initialize scroll behavior after header is loaded
+                initializeScrollBehavior();
+            });
+
+        // Load footer
+        fetch('../components/footer.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('footer').innerHTML = html;
+            });
+
+        // Initialize scroll behavior
+        function initializeScrollBehavior() {
+            const navbar = document.querySelector('.navbar');
+            let lastScrollTop = 0;
+            let scrollThreshold = 100; // Start floating after 100px of scroll
+
+            window.addEventListener('scroll', () => {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                if (scrollTop > scrollThreshold) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+                
+                lastScrollTop = scrollTop;
+            });
+        }
+    </script>
+</body>
+</html>
