@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ACT_TITLE - Law.gov.iru</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header will be loaded here -->
+    <div id="header"></div>
+    <div class="navbar-placeholder"></div>
+
+    <main class="container">
+        <div class="act-container">
+            <header class="act-header">
+                <h1>Edict of Justice</h1>
+                <subtitle>A sovereign expression of authority and interpretation of the Founding Proclamation on matters relating to justice and the rule of law.</subtitle>
+                <div class="act-meta">
+                    <span class="reference-no">Reference No: EDICT-I</span>
+                    <span class="enactment-date">Year of Proclamation: 1877</span>
+                </div>
+            </header>
+
+            <div class="act-content">
+                
+                <div class="act-part">
+                    
+                    <div class="section" id="section-1">
+                        <h2>His Imperial Majesty Emperor Thales XIII, Sovereign of the State of Common Good, with the authority vested by the Proclamation, hereby proclaims:</h2>
+                        <h3>(i) the ordaining that justice within the Domain shall be administered under a single and unified authority, so that the law may remain coherent, intelligible, and final;</h3>
+                        <h3>(ii) the constituting of the highest seat of justice, in the form of the Supreme Court of Judicature, entrusted with the preservation of the unity of law and the proper ordering of its application, which shall act only where necessity requires and shall not assume the place of ordinary adjudication;</h3>
+                        <h3>(iii) that all courts within the Domain shall proceed in accordance with the Proclamation, the Edicts, and the doctrines derived therefrom, so that the authority of law remains undivided throughout the Domain;</h3>
+                        <h3>(iv) and the compelling of the State to assist the Supreme Court of Judicature in the establishment of divisions, manner of proceeding and the like for the expeditious and proper administration of justice.</h3>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="act-footer">
+                <p>Last updated: 1877</p>
+            </footer>
+        </div>
+    </main>
+
+    <!-- Footer will be loaded here -->
+    <div id="footer"></div>
+
+    <script>
+        // Load header
+        fetch('../components/header.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('header').innerHTML = html;
+                // Initialize scroll behavior after header is loaded
+                initializeScrollBehavior();
+            });
+
+        // Load footer
+        fetch('../components/footer.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('footer').innerHTML = html;
+            });
+
+        // Initialize scroll behavior
+        function initializeScrollBehavior() {
+            const navbar = document.querySelector('.navbar');
+            let lastScrollTop = 0;
+            let scrollThreshold = 100; // Start floating after 100px of scroll
+
+            window.addEventListener('scroll', () => {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                if (scrollTop > scrollThreshold) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+                
+                lastScrollTop = scrollTop;
+            });
+        }
+    </script>
+</body>
+</html>

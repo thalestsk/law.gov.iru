@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ACT_TITLE - Law.gov.iru</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header will be loaded here -->
+    <div id="header"></div>
+    <div class="navbar-placeholder"></div>
+
+    <main class="container">
+        <div class="act-container">
+            <header class="act-header">
+                <h1>ACT_TITLE</h1>
+                <subtitle>ACT_DESCRIPTION</subtitle>
+                <div class="act-meta">
+                    <span class="reference-no">Reference No: ACT_REFERENCE</span>
+                    <span class="enactment-date">Enacted: ENACTMENT_DATE</span>
+                </div>
+            </header>
+
+            <div class="act-content">
+                <!-- Act content will be dynamically loaded here -->
+                <div class="act-part">
+                    <h1>PART I<br>PRELIMINARY</h1>
+                    
+                    <div class="section" id="section-1">
+                        <h2>1. Short title, etc.</h2>
+                        <h3>(1) This Act is the <i>Short Title of Act</i>.</h3>
+                    </div>
+                    
+                    <div class="interpretation" id="section-2">
+                        <h2>2. Interpretation</h2>
+                        <h3>(1) In this Act, unless the context otherwise requires—</h3>
+                        
+                        <dl class="definition-list">
+                            <dt>"term to be defined"</dt>
+                            <dd>the definition of the above term;</dd>
+                        </dl>
+                    </div>
+                </div>
+                
+                <div class="act-part">
+                    <h1>PART II<br>THE SECOND PART</h1>
+                    
+                    <div class="section" id="section-3">
+                        <h2>3. Title of the section</h2>
+                        <h3>(1) paragraph 1</h3>
+                        <h4>(a) subparagraph a</h4>
+                        <h4>(b) subparagraph b</h4>
+                        <h3>(2) paragraph 2</h3>
+                        <h4>(a) subparagraph a. same as below. this subpararaph is very long to show the how the text is displayed and to confirm if the alignment is justified. this next sentence is to extend the subparagraph even further becuase the justified content is not apparent enough.</h4>
+                        <h4>(b) subparagraph b</h4>
+                        <h3>(3) paragraph 3</h3>
+                        <h3>(4) paragraph 4</h3>
+                        <h3>(5) paragraph 5</h3>
+                        <h3>(6) paragraph 6</h3>
+                        <h3>(7) paragraph 7</h3>
+                        <h3>(8) paragraph 8. this pararaph is very long to show the how the text is displayed and to confirm if the alignment is justified. this next sentence is to extend the paragraph even further becuase the justified content is not apparent enough.</h3>
+                        <h3>(9) paragraph 9</h3>
+                        <h3>(10) paragraph 10</h3>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="act-footer">
+                <p>Last updated: LAST-UPDATED</p>
+            </footer>
+        </div>
+    </main>
+
+    <!-- Footer will be loaded here -->
+    <div id="footer"></div>
+
+    <script>
+        // Load header
+        fetch('../components/header.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('header').innerHTML = html;
+                // Initialize scroll behavior after header is loaded
+                initializeScrollBehavior();
+            });
+
+        // Load footer
+        fetch('../components/footer.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('footer').innerHTML = html;
+            });
+
+        // Initialize scroll behavior
+        function initializeScrollBehavior() {
+            const navbar = document.querySelector('.navbar');
+            let lastScrollTop = 0;
+            let scrollThreshold = 100; // Start floating after 100px of scroll
+
+            window.addEventListener('scroll', () => {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                if (scrollTop > scrollThreshold) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+                
+                lastScrollTop = scrollTop;
+            });
+        }
+    </script>
+</body>
+</html>
