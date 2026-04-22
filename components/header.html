@@ -1,13 +1,32 @@
 <header class="navbar">
     <div class="container">
-        <a href="/index.html" class="logo">
+        <a href="#" data-link="index.html" class="logo">
             <i class="fas fa-balance-scale"></i> Law.gov.iru
         </a>
         <ul class="nav-links">
-            <li><a href="/index.html" class="active">Legal Database</a></li>
-            <li><a href="/case-laws.html">Case Laws</a></li>
-            <li><a href="/explainers.html">Explainers</a></li>
-            <li><a href="/about.html">About</a></li>
+            <li><a href="#" data-link="index.html" class="active">Legal Database</a></li>
+            <li><a href="#" data-link="case-laws.html">Case Laws</a></li>
+            <li><a href="#" data-link="explainers.html">Explainers</a></li>
+            <li><a href="#" data-link="about.html">About</a></li>
         </ul>
     </div>
 </header>
+
+<script>
+    // Fix header links based on current page depth
+    (function() {
+        const path = window.location.pathname;
+        const depth = path.split('/').length - 1;
+        let basePath = '';
+        
+        if (depth > 1) {
+            // We're in a subdirectory, need to go up
+            basePath = '../'.repeat(depth - 1);
+        }
+        
+        // Update all links with data-link attribute
+        document.querySelectorAll('[data-link]').forEach(link => {
+            link.href = basePath + link.getAttribute('data-link');
+        });
+    })();
+</script>
