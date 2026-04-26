@@ -1,30 +1,44 @@
 <header class="navbar">
     <div class="container">
-        <a href="../index.html" class="logo">
-            <img src="../images/gov-iru-header.png" alt="Law.gov.iru" class="header-image">
+        <a href="index.html" class="logo">
+            <img src="images/gov-iru-header.png" alt="Law.gov.iru" class="header-image">
         </a>
         <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
             <i class="fas fa-bars"></i>
         </button>
         <ul class="nav-links">
-            <li><a href="../index.html" class="active">Legal Database</a></li>
-            <li><a href="../case-laws.html">Case Laws</a></li>
-            <li><a href="../explainers.html">Explainers</a></li>
-            <li><a href="../about.html">About</a></li>
+            <li><a href="index.html" class="active">Legal Database</a></li>
+            <li><a href="case-laws.html">Case Laws</a></li>
+            <li><a href="explainers.html">Explainers</a></li>
+            <li><a href="about.html">About</a></li>
         </ul>
     </div>
 </header>
 
 <script>
-    // Fix header image path and mobile menu functionality
+    // Fix header links and image path for subfolder structure
     (function() {
         const path = window.location.pathname;
         const depth = path.split('/').length - 1;
         let basePath = '';
         
         if (depth > 1) {
-            // We're in a subdirectory, need to go up
+            // We're in a subdirectory, need to go up to root
             basePath = '../'.repeat(depth - 1);
+        }
+        
+        // Update all navigation links to point to root directory files
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            const href = link.getAttribute('href');
+            if (href && !href.startsWith('http') && !href.startsWith('#')) {
+                link.href = basePath + href;
+            }
+        });
+        
+        // Update logo link
+        const logoLink = document.querySelector('.logo');
+        if (logoLink) {
+            logoLink.href = basePath + 'index.html';
         }
         
         // Update header image path
