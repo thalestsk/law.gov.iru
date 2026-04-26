@@ -322,7 +322,7 @@ a:visited {
 
 .laws-table th,
 .laws-table td {
-    padding: 1rem 1.25rem;
+    padding: 0.5rem 0.75rem;
     text-align: left;
     border-bottom: 1px solid var(--border-color);
 }
@@ -745,7 +745,7 @@ a:visited {
     
     .laws-table {
         width: 100% !important;
-        font-size: 12px;
+        font-size: 10px;
     }
     
     .laws-table th,
