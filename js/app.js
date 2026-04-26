@@ -218,10 +218,6 @@ function filterLaws() {
                 matchesType = true;
                 break;
             }
-            if (filter === 'regulations' && law.type === 'Regulations') {
-                matchesType = true;
-                break;
-            }
         }
         
         return matchesSearch && matchesType;
