@@ -206,10 +206,6 @@ function filterLaws() {
                 matchesType = true;
                 break;
             }
-            if (filter === 'judiciary-decisions' && law.type === 'Judiciary Decisions') {
-                matchesType = true;
-                break;
-            }
             if (filter === 'act-of-estates' && law.type === 'Act of Estates') {
                 matchesType = true;
                 break;
