@@ -1,93 +1,51 @@
+<!--
+    Header component for Law.gov.iru
+    
+    IMPORTANT: law.gov.iru is a subfolder of the root directory structure.
+    This means:
+    - Root files (index.html, case-laws.html, etc.) are at: /law.gov.iru/
+    - Subdirectory files are at: /law.gov.iru/act-of-estates/, /law.gov.iru/proclamation/, etc.
+    - Images are at: /law.gov.iru/images/
+    
+    For subdirectory pages, we need to use "../" to go up one level to reach root files.
+    For root level pages, we use direct paths without "../".
+-->
 <header class="navbar">
     <div class="container">
-        <a href="index.html" class="logo">
-            <img src="images/gov-iru-header.png" alt="Law.gov.iru" class="header-image">
+        <!-- Logo link - absolute path from root directory -->
+        <a href="/law.gov.iru/index.html" class="logo">
+            <img src="/law.gov.iru/images/gov-iru-header.png" alt="Law.gov.iru" class="header-image">
         </a>
         <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
             <i class="fas fa-bars"></i>
         </button>
         <ul class="nav-links">
-            <li><a href="index.html" class="active">Legal Database</a></li>
-            <li><a href="case-laws.html">Case Laws</a></li>
-            <li><a href="explainers.html">Explainers</a></li>
-            <li><a href="about.html">About</a></li>
+            <!-- Navigation links - absolute paths from root directory -->
+            <li><a href="/law.gov.iru/index.html" class="active">Legal Database</a></li>
+            <li><a href="/law.gov.iru/case-laws.html">Case Laws</a></li>
+            <li><a href="/law.gov.iru/explainers.html">Explainers</a></li>
+            <li><a href="/law.gov.iru/about.html">About</a></li>
         </ul>
     </div>
 </header>
 
 <script>
-    // Fix header links and image path for subfolder structure
-    (function() {
-        const path = window.location.pathname;
-        console.log('Current path:', path);
+    // Mobile menu toggle functionality only
+    // Note: Using absolute paths from root directory - no dynamic path resolution needed
+    setTimeout(function() {
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
         
-        // Calculate how many directories deep we are
-        const pathParts = path.split('/').filter(part => part.length > 0);
-        console.log('Path parts:', pathParts);
-        
-        // If we're in the root directory (no subdirectories), no base path needed
-        // If we're in subdirectories, calculate the correct base path
-        let basePath = '';
-        
-        // Check if we're in a subdirectory by looking at the path
-        if (path.includes('/act-of-estates/') || path.includes('/proclamation/') || 
-            path.includes('/judiciary-decisions/') || path.includes('/common-law/') || 
-            path.includes('/order-of-state/')) {
-            // We're in a subdirectory, need to go up one level
-            basePath = '../';
+        if (mobileMenuToggle && navLinks) {
+            mobileMenuToggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                navLinks.classList.toggle('active');
+                const icon = this.querySelector('i');
+                if (icon) {
+                    icon.classList.toggle('fa-bars');
+                    icon.classList.toggle('fa-times');
+                }
+            });
         }
-        
-        console.log('Calculated base path:', basePath);
-        
-        // Update all navigation links
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            const href = link.getAttribute('href');
-            if (href && !href.startsWith('http') && !href.startsWith('#')) {
-                const newHref = basePath + href;
-                link.href = newHref;
-                console.log('Updated link:', href, '->', newHref);
-            }
-        });
-        
-        // Update logo link
-        const logoLink = document.querySelector('.logo');
-        if (logoLink) {
-            const newHref = basePath + 'index.html';
-            logoLink.href = newHref;
-            console.log('Updated logo link to:', newHref);
-        }
-        
-        // Update header image path
-        const headerImage = document.querySelector('.header-image');
-        if (headerImage) {
-            const newSrc = basePath + 'images/gov-iru-header.png';
-            headerImage.src = newSrc;
-            console.log('Updated image src to:', newSrc);
-        }
-        
-        // Mobile menu toggle functionality with delay for DOM readiness
-        setTimeout(function() {
-            const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-            const navLinks = document.querySelector('.nav-links');
-            
-            console.log('Mobile menu toggle found:', !!mobileMenuToggle);
-            console.log('Nav links found:', !!navLinks);
-            
-            if (mobileMenuToggle && navLinks) {
-                mobileMenuToggle.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    console.log('Hamburger clicked!');
-                    navLinks.classList.toggle('active');
-                    const icon = this.querySelector('i');
-                    if (icon) {
-                        icon.classList.toggle('fa-bars');
-                        icon.classList.toggle('fa-times');
-                    }
-                    console.log('Nav links classes:', navLinks.className);
-                });
-            } else {
-                console.error('Mobile menu elements not found');
-            }
-        }, 100);
-    })();
+    }, 100);
 </script>
