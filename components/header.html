@@ -7,49 +7,30 @@
     - Subdirectory files are at: /law.gov.iru/act-of-estates/, /law.gov.iru/proclamation/, etc.
     - Images are at: /law.gov.iru/images/
     
-    For subdirectory pages, we need to use "../" to go up one level to reach root files.
-    For root level pages, we use direct paths without "../".
+    Using absolute paths from root directory for consistent navigation.
 -->
 <header class="navbar">
     <div class="container">
-<<<<<<< HEAD
         <!-- Logo link - absolute path from root directory -->
         <a href="/law.gov.iru/index.html" class="logo">
             <img src="/law.gov.iru/images/gov-iru-header.png" alt="Law.gov.iru" class="header-image">
-=======
-        <!-- Logo link - will work from both root and subdirectories -->
-        <a href="../index.html" class="logo">
-            <img src="../images/gov-iru-header.png" alt="Law.gov.iru" class="header-image">
->>>>>>> ba1fc6e376c83f26a765e022b0d96637c4dc2fa9
         </a>
         <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
             <i class="fas fa-bars"></i>
         </button>
         <ul class="nav-links">
-<<<<<<< HEAD
             <!-- Navigation links - absolute paths from root directory -->
             <li><a href="/law.gov.iru/index.html" class="active">Legal Database</a></li>
             <li><a href="/law.gov.iru/case-laws.html">Case Laws</a></li>
             <li><a href="/law.gov.iru/explainers.html">Explainers</a></li>
             <li><a href="/law.gov.iru/about.html">About</a></li>
-=======
-            <!-- Navigation links - use "../" for subfolder structure -->
-            <li><a href="../index.html" class="active">Legal Database</a></li>
-            <li><a href="../case-laws.html">Case Laws</a></li>
-            <li><a href="../explainers.html">Explainers</a></li>
-            <li><a href="../about.html">About</a></li>
->>>>>>> ba1fc6e376c83f26a765e022b0d96637c4dc2fa9
         </ul>
     </div>
 </header>
 
 <script>
     // Mobile menu toggle functionality only
-<<<<<<< HEAD
     // Note: Using absolute paths from root directory - no dynamic path resolution needed
-=======
-    // Note: No dynamic path resolution needed - using fixed "../" paths for subfolder structure
->>>>>>> ba1fc6e376c83f26a765e022b0d96637c4dc2fa9
     setTimeout(function() {
         const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
         const navLinks = document.querySelector('.nav-links');
