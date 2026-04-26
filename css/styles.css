@@ -410,6 +410,54 @@ a:visited {
     font-style: italic;
 }
 
+/* Infobar */
+.infobar {
+    background-color: #f0f4f8;
+    border: 2px solid var(--secondary-color);
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.infobar h3 {
+    color: var(--primary-color);
+    font-size: 1rem;
+    margin-bottom: 0.35rem;
+    font-weight: 600;
+    line-height: 1.1;
+}
+
+.infobar-links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+    line-height: 1.1;
+}
+
+.infobar-links a {
+    color: var(--secondary-color);
+    text-decoration: none;
+    font-size: 0.825rem;
+    transition: var(--transition);
+    margin: 0 0.5rem;
+}
+
+.infobar-links a:hover {
+    color: var(--accent-color);
+    text-decoration: underline;
+}
+
+.infobar-links hr {
+    border: none;
+    border-top: 1px solid var(--border-color);
+    width: 100%;
+    margin: 0.05rem 0;
+    flex-basis: 100%;
+}
+
 /* Act Footer */
 .act-footer {
     text-align: center;
@@ -767,7 +815,7 @@ a:visited {
     box-shadow: var(--shadow);
     overflow: hidden;
     margin: 2rem 0;
-    padding: 2rem;
+    padding: 3rem;
 }
 
 .act-header {
@@ -948,7 +996,7 @@ a:visited {
 .act-container {
     max-width: 8.5in;
     margin: 2rem auto 0 auto;
-    padding: 1in;
+    padding: 3rem;
     background: white;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
