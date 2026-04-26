@@ -11,8 +11,8 @@ function getLawsFromTable() {
                 id: index + 1,
                 chapter: cells[0].textContent.trim(),
                 title: link ? link.textContent.trim() : cells[1].textContent.trim(),
-                category: cells[2].textContent.trim(),
-                type: cells[3].textContent.trim(),
+                type: cells[2].textContent.trim(), // 3rd column is Type
+                category: cells[3].textContent.trim(), // 4th column is Category
                 href: link ? link.getAttribute('href') : '#'
             });
         }
@@ -187,41 +187,59 @@ function updateSelectAllCheckbox() {
 }
 
 // Get selected categories
-function getSelectedCategories() {
-    const selectedCategories = [];
-    categoryCheckboxes.forEach(checkbox => {
-        if (checkbox.checked) {
-            selectedCategories.push(checkbox.value);
-        }
-    });
-    return selectedCategories;
-}
 
-// Filter laws based on search and categories
+// Simple filter: show selected types, hide deselected types
 function filterLaws() {
     const searchTerm = searchInput.value.toLowerCase();
-    const selectedCategories = getSelectedCategories();
+    const selectedFilters = getSelectedFilters();
 
     filteredLaws = laws.filter(law => {
+        // Search filter
         const matchesSearch = !searchTerm || 
             law.title.toLowerCase().includes(searchTerm) || 
-            law.chapter.toLowerCase().includes(searchTerm) ||
-            law.category.toLowerCase().includes(searchTerm);
+            law.chapter.toLowerCase().includes(searchTerm);
         
-        const matchesCategory = selectedCategories.length === 0 || selectedCategories.some(category => {
-            if (category === 'act-of-estates') return law.category === 'Act of Estates';
-            if (category === 'proclamation') return law.category === 'Proclamation' || law.category === 'Edict';
-            if (category === 'orders-of-state') return law.category === 'Orders of State';
-            if (category === 'court-rulings') return law.category === 'Court Rulings';
-            if (category === 'regulations') return law.category === 'Regulations';
-            return false;
-        });
+        // Type filter - show if type matches any selected filter
+        let matchesType = false;
+        for (let filter of selectedFilters) {
+            if (filter === 'proclamation' && (law.type === 'Proclamation' || law.type === 'Edict')) {
+                matchesType = true;
+                break;
+            }
+            if (filter === 'judiciary-decisions' && law.type === 'Judiciary Decisions') {
+                matchesType = true;
+                break;
+            }
+            if (filter === 'act-of-estates' && law.type === 'Act of Estates') {
+                matchesType = true;
+                break;
+            }
+            if (filter === 'orders-of-state' && law.type === 'Orders of State') {
+                matchesType = true;
+                break;
+            }
+            if (filter === 'regulations' && law.type === 'Regulations') {
+                matchesType = true;
+                break;
+            }
+        }
         
-        return matchesSearch && matchesCategory;
+        return matchesSearch && matchesType;
     });
     
-    // Apply current sorting after filtering
-    sortTable(sortColumn);
+    // Re-render table
+    renderTable();
+}
+
+// Get selected filter values
+function getSelectedFilters() {
+    const selectedFilters = [];
+    categoryCheckboxes.forEach(checkbox => {
+        if (checkbox.checked) {
+            selectedFilters.push(checkbox.value);
+        }
+    });
+    return selectedFilters;
 }
 
 // Render the laws table
@@ -250,8 +268,8 @@ function renderTable() {
             row.innerHTML = `
                 <td>${law.chapter}</td>
                 <td><a href="${law.href}">${law.title}</a></td>
-                <td>${formatCategory(law.category)}</td>
                 <td>${law.type}</td>
+                <td>${formatCategory(law.category)}</td>
             `;
             tableBody.appendChild(row);
         });
