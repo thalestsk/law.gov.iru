@@ -21,6 +21,11 @@ function getLawsFromTable() {
     return laws;
 }
 
+// Reload laws from table (for when table is dynamically updated)
+function reloadLaws() {
+    laws = getLawsFromTable();
+}
+
 let laws = []; // Will be populated in init()
 
 // DOM Elements
@@ -46,7 +51,7 @@ let filteredLaws = [...laws];
 // Initialize the app
 function init() {
     // Get laws from the HTML table
-    laws = getLawsFromTable();
+    reloadLaws();
     filteredLaws = [...laws];
     
     // Add sorting indicators and event listeners to headers
