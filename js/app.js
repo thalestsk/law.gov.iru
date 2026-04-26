@@ -210,7 +210,7 @@ function filterLaws() {
                 matchesType = true;
                 break;
             }
-            if (filter === 'orders-of-state' && law.type === 'Orders of State') {
+            if (filter === 'orders-of-state' && (law.type === 'Orders of State' || law.type === 'Order of State')) {
                 matchesType = true;
                 break;
             }
