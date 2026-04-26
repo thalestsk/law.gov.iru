@@ -19,32 +19,45 @@
     // Fix header links and image path for subfolder structure
     (function() {
         const path = window.location.pathname;
-        const depth = path.split('/').length - 1;
+        // Remove any file name and get just the directory path
+        const dirPath = path.substring(0, path.lastIndexOf('/')) || '';
+        const pathSegments = dirPath.split('/').filter(segment => segment.length > 0);
         let basePath = '';
         
-        if (depth > 1) {
-            // We're in a subdirectory, need to go up to root
-            basePath = '../'.repeat(depth - 1);
+        // If we're in a subdirectory, need to go up
+        if (pathSegments.length > 0) {
+            basePath = '../'.repeat(pathSegments.length);
         }
+        
+        console.log('Current path:', path);
+        console.log('Directory path:', dirPath);
+        console.log('Path segments:', pathSegments);
+        console.log('Calculated base path:', basePath);
         
         // Update all navigation links to point to root directory files
         document.querySelectorAll('.nav-links a').forEach(link => {
             const href = link.getAttribute('href');
             if (href && !href.startsWith('http') && !href.startsWith('#')) {
-                link.href = basePath + href;
+                const newHref = basePath + href;
+                link.href = newHref;
+                console.log('Updated link:', href, '->', newHref);
             }
         });
         
         // Update logo link
         const logoLink = document.querySelector('.logo');
         if (logoLink) {
-            logoLink.href = basePath + 'index.html';
+            const newHref = basePath + 'index.html';
+            logoLink.href = newHref;
+            console.log('Updated logo link to:', newHref);
         }
         
         // Update header image path
         const headerImage = document.querySelector('.header-image');
         if (headerImage) {
-            headerImage.src = basePath + 'images/gov-iru-header.png';
+            const newSrc = basePath + 'images/gov-iru-header.png';
+            headerImage.src = newSrc;
+            console.log('Updated image src to:', newSrc);
         }
         
         // Mobile menu toggle functionality with delay for DOM readiness
