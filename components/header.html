@@ -1,8 +1,11 @@
 <header class="navbar">
     <div class="container">
         <a href="#" data-link="index.html" class="logo">
-            <i class="fas fa-balance-scale"></i> Law.gov.iru
+            <img src="../images/gov-iru-header.png" alt="Law.gov.iru" class="header-image">
         </a>
+        <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
+            <i class="fas fa-bars"></i>
+        </button>
         <ul class="nav-links">
             <li><a href="#" data-link="index.html" class="active">Legal Database</a></li>
             <li><a href="#" data-link="case-laws.html">Case Laws</a></li>
@@ -13,7 +16,7 @@
 </header>
 
 <script>
-    // Fix header links based on current page depth
+    // Fix header links and image based on current page depth
     (function() {
         const path = window.location.pathname;
         const depth = path.split('/').length - 1;
@@ -28,5 +31,36 @@
         document.querySelectorAll('[data-link]').forEach(link => {
             link.href = basePath + link.getAttribute('data-link');
         });
+        
+        // Update header image path
+        const headerImage = document.querySelector('.header-image');
+        if (headerImage) {
+            headerImage.src = basePath + 'images/gov-iru-header.png';
+        }
+        
+        // Mobile menu toggle functionality with delay for DOM readiness
+        setTimeout(function() {
+            const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+            
+            console.log('Mobile menu toggle found:', !!mobileMenuToggle);
+            console.log('Nav links found:', !!navLinks);
+            
+            if (mobileMenuToggle && navLinks) {
+                mobileMenuToggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    console.log('Hamburger clicked!');
+                    navLinks.classList.toggle('active');
+                    const icon = this.querySelector('i');
+                    if (icon) {
+                        icon.classList.toggle('fa-bars');
+                        icon.classList.toggle('fa-times');
+                    }
+                    console.log('Nav links classes:', navLinks.className);
+                });
+            } else {
+                console.error('Mobile menu elements not found');
+            }
+        }, 100);
     })();
 </script>

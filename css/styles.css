@@ -33,7 +33,6 @@ body {
     font-size: 1rem;
     color: var(--text-color);
     background-color: var(--light-gray);
-    padding-top: 70px;
     margin: 0;
 }
 
@@ -41,6 +40,10 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 1.5rem;
+}
+
+main {
+    padding-top: 120px;
 }
 
 a {
@@ -63,11 +66,10 @@ a:visited {
     background-color: #fff;
     box-shadow: none;
     position: relative;
-    width: 100%;
-    top: 0;
     z-index: 1000;
-    padding: 0.75rem 0;
     transition: all 0.3s ease;
+    max-height: 120px;
+    padding: 0;
 }
 
 .navbar.scrolled {
@@ -87,13 +89,20 @@ a:visited {
 
 .navbar.scrolled + .navbar-placeholder {
     display: block;
-    height: 70px;
+    height: 100px;
+}
+
+/* Ensure navbar is at the top when not scrolled */
+.navbar:not(.scrolled) {
+    position: relative;
+    top: 0;
 }
 
 .navbar .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 10px;
 }
 
 .logo {
@@ -101,6 +110,16 @@ a:visited {
     font-weight: 700;
     color: var(--primary-color);
     text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.header-image {
+    height: auto;
+    max-width: 100%;
+    max-height: 90px;
+    object-fit: contain;
+    transition: max-height 0.3s ease;
 }
 
 .nav-links {
@@ -542,26 +561,105 @@ a:visited {
     font-size: 0.9rem;
 }
 
+/* Mobile menu toggle */
+.mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: 1px solid var(--border-color);
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.mobile-menu-toggle:hover {
+    background-color: var(--light-gray);
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
-    body {
-        padding-top: 60px;
+    main {
+        padding-top: 120px;
+    }
+    
+    .mobile-menu-toggle {
+        display: block;
+    }
+    
+    .header-image {
+        max-height: 60px;
+    }
+    
+    .navbar {
+        padding: 0;
     }
     
     .navbar .container {
-        flex-direction: column;
-        padding: 1rem;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
     }
     
     .nav-links {
-        margin-top: 1rem;
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: white;
+        flex-direction: column;
+        box-shadow: var(--shadow);
+        z-index: 999;
+        max-height: 300px;
+        overflow-y: auto;
+    }
+    
+    .nav-links.active {
+        display: flex !important;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: white;
+        flex-direction: column;
+        box-shadow: var(--shadow);
+        z-index: 999;
+        border: 1px solid var(--border-color);
+    }
+    
+    .nav-links li {
         width: 100%;
-        justify-content: space-around;
+        text-align: center;
+        border-bottom: 1px solid var(--border-color);
+    }
+    
+    .nav-links li:last-child {
+        border-bottom: none;
     }
     
     .nav-links li a {
-        padding: 0.5rem;
+        display: block;
+        padding: 1rem;
         font-size: 0.9rem;
+    }
+    
+    /* Mobile scrolled navbar styles */
+    .navbar.scrolled {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1001;
+        max-height: 70px;
+        background: white;
+        box-shadow: var(--shadow);
+    }
+    
+    .navbar.scrolled .nav-links {
+        top: 70px;
     }
     
     .page-header h1 {
@@ -848,7 +946,7 @@ a:visited {
 /* Page layout */
 .act-container {
     max-width: 8.5in;
-    margin: 0 auto;
+    margin: 2rem auto 0 auto;
     padding: 1in;
     background: white;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
@@ -961,10 +1059,6 @@ a:visited {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .nav-links {
-        display: none;
-    }
-    
     .hero h1 {
         font-size: 2rem;
     }

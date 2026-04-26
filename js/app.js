@@ -316,5 +316,41 @@ function updatePaginationInfo(totalPages) {
     paginationInfo.textContent = `Showing ${startItem} to ${endItem} of ${filteredLaws.length} laws`;
 }
 
+// Mobile menu functionality
+function initMobileMenu() {
+    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    
+    console.log('Mobile menu toggle found:', !!mobileMenuToggle);
+    console.log('Nav links found:', !!navLinks);
+    
+    if (mobileMenuToggle && navLinks) {
+        mobileMenuToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            console.log('Hamburger clicked from app.js!');
+            navLinks.classList.toggle('active');
+            const icon = this.querySelector('i');
+            if (icon) {
+                icon.classList.toggle('fa-bars');
+                icon.classList.toggle('fa-times');
+            }
+            console.log('Nav links classes:', navLinks.className);
+        });
+    } else {
+        console.error('Mobile menu elements not found in app.js');
+    }
+}
+
+// Initialize mobile menu with multiple attempts
+function tryInitMobileMenu() {
+    initMobileMenu();
+    // Try again after a delay if header is still loading
+    setTimeout(initMobileMenu, 500);
+    setTimeout(initMobileMenu, 1000);
+}
+
 // Initialize the app when the DOM is loaded
-document.addEventListener('DOMContentLoaded', init);
+document.addEventListener('DOMContentLoaded', function() {
+    init();
+    tryInitMobileMenu();
+});
