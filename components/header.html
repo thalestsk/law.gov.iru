@@ -19,22 +19,27 @@
     // Fix header links and image path for subfolder structure
     (function() {
         const path = window.location.pathname;
-        // Remove any file name and get just the directory path
-        const dirPath = path.substring(0, path.lastIndexOf('/')) || '';
-        const pathSegments = dirPath.split('/').filter(segment => segment.length > 0);
+        console.log('Current path:', path);
+        
+        // Calculate how many directories deep we are
+        const pathParts = path.split('/').filter(part => part.length > 0);
+        console.log('Path parts:', pathParts);
+        
+        // If we're in the root directory (no subdirectories), no base path needed
+        // If we're in subdirectories, calculate the correct base path
         let basePath = '';
         
-        // If we're in a subdirectory, need to go up
-        if (pathSegments.length > 0) {
-            basePath = '../'.repeat(pathSegments.length);
+        // Check if we're in a subdirectory by looking at the path
+        if (path.includes('/act-of-estates/') || path.includes('/proclamation/') || 
+            path.includes('/judiciary-decisions/') || path.includes('/common-law/') || 
+            path.includes('/order-of-state/')) {
+            // We're in a subdirectory, need to go up one level
+            basePath = '../';
         }
         
-        console.log('Current path:', path);
-        console.log('Directory path:', dirPath);
-        console.log('Path segments:', pathSegments);
         console.log('Calculated base path:', basePath);
         
-        // Update all navigation links to point to root directory files
+        // Update all navigation links
         document.querySelectorAll('.nav-links a').forEach(link => {
             const href = link.getAttribute('href');
             if (href && !href.startsWith('http') && !href.startsWith('#')) {
