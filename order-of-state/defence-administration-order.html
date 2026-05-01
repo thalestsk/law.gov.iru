@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Defence Administration Order 2017 - Law.gov.iru</title>
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header will be loaded here -->
+    <div id="header"></div>
+    <div class="navbar-placeholder"></div>
+
+    <main class="container">
+        <div class="act-container">
+
+            <div class="infobar">
+                <div class="infobar-links">
+                    <h3><a href="../order-of-state/armed-forces-order.html">Armed Forces Order 2017</a></h3>
+                    <h3><a href="../order-of-state/defence-administration-order.html">Defence Administration Order 2017</a></h3>
+                </div>
+            </div>
+
+            <header class="act-header">
+                <h1>Defence Administration Order 2017</h1>
+                <subtitle>An Order of State for the establishment of the National Defence Administration.</subtitle>
+                <div class="act-meta">
+                    <span class="reference-no">Reference No: OS.2017/02</span>
+                    <span class="enactment-date">Enacted: 1 January 2017</span>
+                </div>
+            </header>
+
+            <div class="act-content">
+                <div class="act-part">
+                    <h1>By Order of His Imperial Majesty Emperor Thales XIII, Sovereign of the State of Common Good</h1>
+                    
+                    <div class="section" id="section-1">
+                        <h2>1. Short title, etc.</h2>
+                        <h3>This Order of State is the <i>National Defence Administration Order 2017</i> as promulgated on 1 January 2017.</h3>
+                    </div>
+                    
+                    <div class="section" id="section-2">
+                        <h2>2. National Defence Administration</h2>
+                        <h3>The National Defence Administration (the "Administration") is hereby established as the umbrella organisation for all functions pertaining to the administration of national defence.</h3>
+                    </div>
+
+                    <div class="section" id="section-3">
+                        <h2>3. Leadership Structure</h2>
+                        <h3>(1) The chief executive officer of the Administration shall be the Director-General of Defence Administration ("Director-General") and shall be appointed by the Sovereign.</h3>
+                        <h3>(2) The Director-General may appoint other persons as Deputy Directors-General or Assistant Directors-General for the effective administration of the Administration.</h3>
+                        <h3>(3) The Deputy Directors-General and Assistant Directors-General may appoint other persons as needed for the effective exercise of their respective functions and duties as determined by the Director-General.</h3>
+                        <h3>(4) The Director-General may make standing instructions on the line of succession within the Administration in the event of the incapacity or absence of the any member of the leadership, unless otherwise provided for by the Sovereign.</h3>
+                    </div>
+
+                    <div class="section" id="section-4">
+                        <h2>4. Scope of Administrative Authority</h2>
+                        <h3>The Director-General has authority over:</h3>
+                        <h4>(a) fiscal and financial matters essential to the effective administration and operation of national defence;</h4>
+                        <h4>(b) the participation, care, maintenance and welfare of all persons employed for the purposes of national defence, be it in the past, present or future;</h4>
+                        <h4>(c) building and maintaining current and future capabilities for the purposes of national defence;</h4>
+                        <h4>(d) the effective implementation and facilitiation of transition of the national economy to support and sustain a prolonged state of total war; and</h4>
+                        <h4>(e) formulating, executing and supporting of national defence outcomes that may become necessary from time to time.</h4>
+                    </div>
+
+                    <div class="section" id="section-5">
+                        <h2>5. Estates-General</h2>
+                        <h3>The Estates-General may not directly provide for matters of national defence, and where a provision on a matter of principle or general governance may be applicable, such a provision shall not be constructed or construed to encumber the operational effectiveness for the delivery of national defence outcomes.</h3>
+                    </div>
+
+                    <div class="section" id="section-6">
+                        <h2>6. Organisation</h2>
+                        <h3>The Director-General shall make provisions to organise within the Administration into departments and divisions as deemed necessary for the effective administration of national defence.</h3>
+                    </div>
+
+                    <div class="section" id="section-7">
+                        <h2>7. Direct Responsibility to Sovereign</h2>
+                        <h3>The Director-General bears sole, direct and personal responsibility to the Sovereign until otherwise discharged by the Sovereign.</h3>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <footer class="act-footer">
+                <p>Last updated: 1 January 2017</p>
+            </footer>
+        </div>
+    </main>
+
+    <!-- Footer will be loaded here -->
+    <div id="footer"></div>
+
+    <script>
+        // Load header
+        fetch('../components/header.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('header').innerHTML = html;
+                // Initialize scroll behavior after header is loaded
+                initializeScrollBehavior();
+            });
+
+        // Load footer
+        fetch('../components/footer.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('footer').innerHTML = html;
+            });
+
+        // Initialize scroll behavior
+        function initializeScrollBehavior() {
+            const navbar = document.querySelector('.navbar');
+            let lastScrollTop = 0;
+            let scrollThreshold = 100; // Start floating after 100px of scroll
+
+            window.addEventListener('scroll', () => {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                if (scrollTop > scrollThreshold) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+                
+                lastScrollTop = scrollTop;
+            });
+        }
+    </script>
+</body>
+</html>

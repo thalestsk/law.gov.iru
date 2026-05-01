@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>External Relations Order 2026 - Law.gov.iru</title>
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header will be loaded here -->
+    <div id="header"></div>
+    <div class="navbar-placeholder"></div>
+
+    <main class="container">
+        <div class="act-container">
+
+            <header class="act-header">
+                <h1>External Relations Order 2026</h1>
+                <subtitle>An Order of State for the establishment of the Directorate-General of External Relations.</subtitle>
+                <div class="act-meta">
+                    <span class="reference-no">Reference No: OS.2026/01</span>
+                    <span class="enactment-date">Enacted: 1 January 2026</span>
+                </div>
+            </header>
+
+            <div class="act-content">
+                <div class="act-part">
+                    <h1>By Order of His Imperial Majesty Emperor Thales XIII, Sovereign of the State of Common Good</h1>
+                    
+                    <div class="section" id="section-1">
+                        <h2>1. Short title, etc.</h2>
+                        <h3>This Order of State is the <i>External Relations Order 2026</i> as promulgated on 1 January 2026.</h3>
+                    </div>
+                    
+                    <div class="section" id="section-2">
+                        <h2>2. Directorate-General of External Relations</h2>
+                        <h3>The Directorate-General of External Relations (the "Directorate-General") is hereby established as the umbrella organisation for all executive functions pertaining to external relations and foreign affairs.</h3>
+                    </div>
+
+                    <div class="section" id="section-3">
+                        <h2>3. Director-General</h2>
+                        <h3>(1) The Director-General of External Relations ("Director-General") is the chief executive officer of the Directorate-General and shall be appointed by the Sovereign.</h3>
+                        <h3>(2) The Director-General shall be the highest functionary representing the Sovereign in matters of external relations, and shall act as the principal authority through whom the Sovereign's will is expressed and administered in such matters.</h3>
+                        <h3>(3) The Director-General may appoint other persons and organise accordingly for the effective administration of the Directorate-General.</h3>
+                        <h3>(4) The Director-General shall appoint high representatives to foreign states and international organisations with the concurrence of the Sovereign.</h3>
+                    </div>
+
+                    <div class="section" id="section-4">
+                        <h2>4. General Functions</h2>
+                        <h3>The Director-General shall, as the principal intermediary between the Sovereign and third parties beyond the State, exercise the following functions:</h3>
+                        <h4>(a) represent and communicate the position, interests, and intentions of the State externally;</h4>
+                        <h4>(b) receive, interpret, and convey communications, positions, and developments from external persons, entities, and authorities to the State;</h4>
+                        <h4>(c) facilitate, manage, and maintain relations between the State and foreign states, international organisations, and other external actors;</h4>
+                        <h4>(d) protect and advance the interests of the State and its citizens in external matters;</h4>
+                        <h4>(e) ensure consistency, coherence, and continuity in the external conduct of the State; and</h4>
+                        <h4>(f) perform such acts and functions as are necessary or incidental to the discharge of the Director-General's role as intermediary in external relations.</h4>
+                    </div>
+
+                    <div class="section" id="section-5">
+                        <h2>5. Estates-General</h2>
+                        <h3>The Estates-General shall provide for the procedures, protocols and standards insofar as they relate to the conduct of external relations and foreign affairs, such that they are consistent with the principles of the Order of State, without encumbering the effectiveness of the Director-General's general functions.</h3>
+                    </div>
+
+                    <div class="section" id="section-6">
+                        <h2>6. Direct Responsibility to Sovereign</h2>
+                        <h3>The Director-General bears sole, direct and personal responsibility to the Sovereign until otherwise discharged by the Sovereign.</h3>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <footer class="act-footer">
+                <p>Last updated: 1 January 2026</p>
+            </footer>
+        </div>
+    </main>
+
+    <!-- Footer will be loaded here -->
+    <div id="footer"></div>
+
+    <script>
+        // Load header
+        fetch('../components/header.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('header').innerHTML = html;
+                // Initialize scroll behavior after header is loaded
+                initializeScrollBehavior();
+            });
+
+        // Load footer
+        fetch('../components/footer.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('footer').innerHTML = html;
+            });
+
+        // Initialize scroll behavior
+        function initializeScrollBehavior() {
+            const navbar = document.querySelector('.navbar');
+            let lastScrollTop = 0;
+            let scrollThreshold = 100; // Start floating after 100px of scroll
+
+            window.addEventListener('scroll', () => {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                if (scrollTop > scrollThreshold) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+                
+                lastScrollTop = scrollTop;
+            });
+        }
+    </script>
+</body>
+</html>

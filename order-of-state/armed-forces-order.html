@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Armed Forces Order 2017 - Law.gov.iru</title>
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header will be loaded here -->
+    <div id="header"></div>
+    <div class="navbar-placeholder"></div>
+
+    <main class="container">
+        <div class="act-container">
+
+            <div class="infobar">
+                <div class="infobar-links">
+                    <h3><a href="../order-of-state/armed-forces-order.html">Armed Forces Order 2017</a></h3>
+                    <h3><a href="../order-of-state/defence-administration-order.html">Defence Administration Order 2017</a></h3>
+                </div>
+            </div>
+
+            <header class="act-header">
+                <h1>Armed Forces Order 2017</h1>
+                <subtitle>An Order of State for the establishment of the Imperialean National Armed Forces.</subtitle>
+                <div class="act-meta">
+                    <span class="reference-no">Reference No: OS.2017/01</span>
+                    <span class="enactment-date">Enacted: 1 January 2017</span>
+                </div>
+            </header>
+
+            <div class="act-content">
+                <div class="act-part">
+                    <h1>By Order of His Imperial Majesty Emperor Thales XIII, Sovereign of the State of Common Good</h1>
+                    
+                    <div class="section" id="section-1">
+                        <h2>1. Short title, etc.</h2>
+                        <h3>This Order of State is the <i>Armed Forces Order 2017</i> as promulgated on 1 January 2017.</h3>
+                    </div>
+                    
+                    <div class="section" id="section-2">
+                        <h2>2. Imperialean National Armed Forces</h2>
+                        <h3>(1) The Imperialean National Armed Forces (the "Armed Forces") is hereby established and constituted as the military component of the State.</h3>
+                        <h3>(2) The Sovereign is the commander-in-chief of the Armed Forces.</h3>
+                    </div>
+
+                    <div class="section" id="section-3">
+                        <h2>3. Armed Forces Code</h2>
+                        <h3>The Armed Forces Code is the statutory law that governs the operations, structure, and administration of the Armed Forces.</h3>
+                    </div>
+
+                    <div class="section" id="section-4">
+                        <h2>4. Service Members</h2>
+                        <h3>(1) A service member is any person employed in the service of the Armed Forces.</h3>
+                        <h3>(2) A service member, during his time in service and any other period in time specified under written law, shall be exempt from any penal provision outside of the Armed Forces Code.</h3>
+                        <h3>(3) A service member, upon entering into service shall be bound by the non-penal provisions of the Armed Forces Code as may be amended from time to time, until otherwise discharged by any written law.</h3>
+                    </div>
+
+                    <div class="section" id="section-5">
+                        <h2>5. Chief of Armed Forces</h2>
+                        <h3>(1) The Chief of Armed Forces is the highest-ranking service member in the Armed Forces and is appointed by the Sovereign.</h3>
+                        <h3>(2) The Chief of Armed Forces shall be the executor of the Sovereign's command over the Armed Forces and shall advise the Sovereign where appropriate.</h3>
+                        <h3>(3) The Chief of Armed Forces may amend the Armed Forces Code from time to time at his discretion.</h3>
+                        <h3>(4) The Chief of Armed Forces may delegate authority to other service members as necessary.</h3>
+                        <h3>(5) The Chief of Armed Forces shall organise the Armed Forces as is necessary for the effective defence of the State, based on the resources available at his disposal.</h3>
+                    </div>
+
+                    <div class="section" id="section-6">
+                        <h2>6. Estates-General</h2>
+                        <h3>The Estates-General may not directly provide for matters of national defence, and where a provision on a matter of principle or general governance may be applicable, such a provision shall not be constructed or construed to impede or encumber the lawful execution of the Sovereign's command over the Armed Forces.</h3>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <footer class="act-footer">
+                <p>Last updated: 1 January 2017</p>
+            </footer>
+        </div>
+    </main>
+
+    <!-- Footer will be loaded here -->
+    <div id="footer"></div>
+
+    <script>
+        // Load header
+        fetch('../components/header.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('header').innerHTML = html;
+                // Initialize scroll behavior after header is loaded
+                initializeScrollBehavior();
+            });
+
+        // Load footer
+        fetch('../components/footer.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('footer').innerHTML = html;
+            });
+
+        // Initialize scroll behavior
+        function initializeScrollBehavior() {
+            const navbar = document.querySelector('.navbar');
+            let lastScrollTop = 0;
+            let scrollThreshold = 100; // Start floating after 100px of scroll
+
+            window.addEventListener('scroll', () => {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                if (scrollTop > scrollThreshold) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+                
+                lastScrollTop = scrollTop;
+            });
+        }
+    </script>
+</body>
+</html>
