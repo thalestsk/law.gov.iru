@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Probity of Governance Order 2024 - Law.gov.iru</title>
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header will be loaded here -->
+    <div id="header"></div>
+    <div class="navbar-placeholder"></div>
+
+    <main class="container">
+        <div class="act-container">
+
+            <header class="act-header">
+                <h1>Probity of Governance Order 2024</h1>
+                <subtitle>An Order of State for the establishment of the Directorate-General of Supervision.</subtitle>
+                <div class="act-meta">
+                    <span class="reference-no">Reference No: OS.2024/03</span>
+                    <span class="enactment-date">Enacted: 1 January 2024</span>
+                </div>
+            </header>
+
+            <div class="act-content">
+                <div class="act-part">
+                    <h1>By Order of His Imperial Majesty Emperor Thales XIII, Sovereign of the State of Common Good</h1>
+                    
+                    <div class="section" id="section-1">
+                        <h2>1. Short title, etc.</h2>
+                        <h3>This Order of State is the <i>Probity of Governance Order 2024</i> as promulgated on 1 January 2024.</h3>
+                    </div>
+                    
+                    <div class="section" id="section-2">
+                        <h2>2. Directorate-General of Supervision</h2>
+                        <h3>The Directorate-General of Supervision (the "Directorate-General") is hereby established as the umbrella organisation for the supervision of the conduct of government.</h3>
+                    </div>
+
+                    <div class="section" id="section-3">
+                        <h2>3. Leadership Structure</h2>
+                        <h3>(1) The Director-General of Supervision (the "Director-General") shall be the chief executive officer of the Directorate-General and shall be appointed by the Sovereign.</h3>
+                        <h3>(2) The Director-General shall appoint three (3) Deputy Directors-General, who shall concurrently be appointed as:</h3>
+                        <h4>(a) Inspector-General,</h4>
+                        <h4>(b) Procurator-General, and</h4>
+                        <h4>(c) Censor-General.</h4>
+                        <h3>(3) The Deputy Directors-General shall appoint with the concurrence of the Director-General deputies and staff for the effective discharge of their duties.</h3>
+                        <h3>(4) The Director-General may make standing instructions on the line of succession within the Directorate-General in the event of the incapacity or absence of a member of the leadership, unless otherwise provided for by the Sovereign.</h3>
+                    </div>
+
+                    <div class="section" id="section-4">
+                        <h2>4. Inspector-General</h2>
+                        <h3>The Inspector-General shall be conferred the authority to:</h3>
+                        <h4>(a) investigate allegations of corruption within the State;</h4>
+                        <h4>(b) enact regulations on matters pertaining to enforcement operations against corruption;</h4>
+                        <h4>(c) exercise the powers of public security officers in carrying out investigations and enforcement operations; and</h4>
+                        <h4>(d) refer its investigations to the appropriate prosecuting authority for prosecution.</h4>
+                    </div>
+
+                    <div class="section" id="section-5">
+                        <h2>5. Procurator-General</h2>
+                        <h3>The Procurator-General shall be conferred the authority to:</h3>
+                        <h4>(a) investigate allegations of professional misconduct and administrative overreach by employees of the State;</h4>
+                        <h4>(b) enact regulations on matters pertaining its investigatory functions;</h4>
+                        <h4>(c) exercise the powers of public security officers in carrying out investigations; and</h4>
+                        <h4>(d) refer its investigations to the appropriate prosecuting authority for prosecution.</h4>
+                    </div>
+
+                    <div class="section" id="section-6">
+                        <h2>6. Censor-General</h2>
+                        <h3>The Censor-General shall be conferred the authority to:</h3>
+                        <h4>(a) educate the Government on the principles of probity and governance;</h4>
+                        <h4>(b) implement change management initiatives to promote probity and governance;</h4>
+                        <h4>(c) communicate and build mutual trust with the public regarding the state of governance; and</h4>
+                        <h4>(d) conduct regular supervisory audits on the Government to identify areas of improvement, and where necessary, stipulate corrective actions or refer potential violations to the Inspector-General or Procurator-General for investigation.</h4>
+                    </div>
+
+                    <div class="section" id="section-7">
+                        <h2>7. Estates-General</h2>
+                        <h3>The Estates-General shall provide for the penalties and legal consequences of violations of principles of probity and governance consistent with this Order of State.</h3>
+                    </div>
+
+                    <div class="section" id="section-8">
+                        <h2>8. Frustration of Government</h2>
+                        <h3>The Director-General shall ensure that in the exercise of authority against the Government, the work of the Directorate-General is not conducted in a way that frustrates the effective functioning of the Government, and where such a potential conflict may arise, the Director-General shall consult the Sovereign for direction on the appropriate course of action.</h3>
+                    </div>
+
+                    <div class="section" id="section-9">
+                        <h2>9. Direct Responsibility to Sovereign</h2>
+                        <h3>The Director-General bears sole, direct and personal responsibility to the Sovereign until otherwise discharged by the Sovereign.</h3>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <footer class="act-footer">
+                <p>Last updated: 1 January 2017</p>
+            </footer>
+        </div>
+    </main>
+
+    <!-- Footer will be loaded here -->
+    <div id="footer"></div>
+
+    <script>
+        // Load header
+        fetch('../components/header.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('header').innerHTML = html;
+                // Initialize scroll behavior after header is loaded
+                initializeScrollBehavior();
+            });
+
+        // Load footer
+        fetch('../components/footer.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('footer').innerHTML = html;
+            });
+
+        // Initialize scroll behavior
+        function initializeScrollBehavior() {
+            const navbar = document.querySelector('.navbar');
+            let lastScrollTop = 0;
+            let scrollThreshold = 100; // Start floating after 100px of scroll
+
+            window.addEventListener('scroll', () => {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                if (scrollTop > scrollThreshold) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+                
+                lastScrollTop = scrollTop;
+            });
+        }
+    </script>
+</body>
+</html>
